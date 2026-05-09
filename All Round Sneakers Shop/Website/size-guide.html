@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Size Guide | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .size-guide-page {
+      min-height: 100vh;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+      padding: 40px 30px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 15px;
+    }
+    
+    .hero-section p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+    
+    .size-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .size-card {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+    
+    .size-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .size-card h3 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .size-card h3 i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .size-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    
+    .size-table th {
+      background: rgba(255,107,0,0.1);
+      color: var(--accent);
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .size-table td {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-light);
+    }
+    
+    .size-table tr:hover {
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .size-highlight {
+      background: rgba(255,107,0,0.1);
+      border-radius: 8px;
+      padding: 5px 10px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    .tips-section {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-top: 30px;
+    }
+    
+    .tips-section h3 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .tips-section h3 i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .tip-card {
+      background: rgba(255,255,255,0.02);
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .tip-card h4 {
+      color: var(--accent);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .tip-card p {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    
+    .size-comparison {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-top: 30px;
+    }
+    
+    .size-comparison h3 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .size-comparison h3 i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .brand-logos {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .brand-logo {
+      text-align: center;
+      padding: 15px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      min-width: 120px;
+    }
+    
+    .brand-logo img {
+      height: 40px;
+      margin-bottom: 10px;
+    }
+    
+    .brand-logo strong {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .size-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .brand-logos {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body class="size-guide-page" style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <ul class="nav-links">
+      <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="goToSearch()"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1>Sneaker Size Guide</h1>
+    <p>Find your perfect fit with our comprehensive size chart and fitting tips</p>
+  </section>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <div class="size-grid">
+      <!-- Men's Sizes -->
+      <div class="size-card">
+        <h3><i class="fas fa-male"></i> Men's Sizes</h3>
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th>US Size</th>
+              <th>UK Size</th>
+              <th>EU Size</th>
+              <th>Foot Length (cm)</th>
+              <th>Foot Width (cm)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="size-highlight">7</span></td>
+              <td>6</td>
+              <td>40</td>
+              <td>25.0</td>
+              <td>10.0</td>
+            </tr>
+            <tr>
+              <td>7.5</td>
+              <td>6.5</td>
+              <td>40.5</td>
+              <td>25.5</td>
+              <td>10.2</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>7.5</td>
+              <td>41</td>
+              <td>26.0</td>
+              <td>10.4</td>
+            </tr>
+            <tr>
+              <td>8.5</td>
+              <td>8</td>
+              <td>42</td>
+              <td>26.5</td>
+              <td>10.6</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>8.5</td>
+              <td>42.5</td>
+              <td>27.0</td>
+              <td>10.8</td>
+            </tr>
+            <tr>
+              <td>9.5</td>
+              <td>9</td>
+              <td>43</td>
+              <td>27.5</td>
+              <td>11.0</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>9.5</td>
+              <td>44</td>
+              <td>28.0</td>
+              <td>11.2</td>
+            </tr>
+            <tr>
+              <td>10.5</td>
+              <td>10</td>
+              <td>44.5</td>
+              <td>28.5</td>
+              <td>11.4</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>10.5</td>
+              <td>45</td>
+              <td>29.0</td>
+              <td>11.6</td>
+            </tr>
+            <tr>
+              <td>11.5</td>
+              <td>11</td>
+              <td>45.5</td>
+              <td>29.5</td>
+              <td>11.8</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>11.5</td>
+              <td>46</td>
+              <td>30.0</td>
+              <td>12.0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Women's Sizes -->
+      <div class="size-card">
+        <h3><i class="fas fa-female"></i> Women's Sizes</h3>
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th>US Size</th>
+              <th>UK Size</th>
+              <th>EU Size</th>
+              <th>Foot Length (cm)</th>
+              <th>Foot Width (cm)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>5</td>
+              <td>3</td>
+              <td>35.5</td>
+              <td>23.0</td>
+              <td>9.0</td>
+            </tr>
+            <tr>
+              <td>5.5</td>
+              <td>3.5</td>
+              <td>36</td>
+              <td>23.5</td>
+              <td>9.2</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>4</td>
+              <td>36.5</td>
+              <td>24.0</td>
+              <td>9.4</td>
+            </tr>
+            <tr>
+              <td>6.5</td>
+              <td>4.5</td>
+              <td>37</td>
+              <td>24.5</td>
+              <td>9.6</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>5</td>
+              <td>37.5</td>
+              <td>25.0</td>
+              <td>9.8</td>
+            </tr>
+            <tr>
+              <td>7.5</td>
+              <td>5.5</td>
+              <td>38</td>
+              <td>25.5</td>
+              <td>10.0</td>
+            </tr>
+            <tr>
+              <td><span class="size-highlight">8</span></td>
+              <td>6</td>
+              <td>38.5</td>
+              <td>26.0</td>
+              <td>10.2</td>
+            </tr>
+            <tr>
+              <td>8.5</td>
+              <td>6.5</td>
+              <td>39</td>
+              <td>26.5</td>
+              <td>10.4</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>7</td>
+              <td>39.5</td>
+              <td>27.0</td>
+              <td>10.6</td>
+            </tr>
+            <tr>
+              <td>9.5</td>
+              <td>7.5</td>
+              <td>40</td>
+              <td>27.5</td>
+              <td>10.8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Kids' Sizes -->
+      <div class="size-card">
+        <h3><i class="fas fa-child"></i> Kids' Sizes</h3>
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th>US Size</th>
+              <th>Age</th>
+              <th>EU Size</th>
+              <th>Foot Length (cm)</th>
+              <th>Foot Width (cm)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1Y</td>
+              <td>1-2 years</td>
+              <td>16.5</td>
+              <td>11.0</td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>2Y</td>
+              <td>2-3 years</td>
+              <td>17</td>
+              <td>11.5</td>
+              <td>6.2</td>
+            </tr>
+            <tr>
+              <td>3Y</td>
+              <td>3-4 years</td>
+              <td>18</td>
+              <td>12.0</td>
+              <td>6.4</td>
+            </tr>
+            <tr>
+              <td>4Y</td>
+              <td>4-5 years</td>
+              <td>18.5</td>
+              <td>12.5</td>
+              <td>6.6</td>
+            </tr>
+            <tr>
+              <td>5Y</td>
+              <td>5-6 years</td>
+              <td>19</td>
+              <td>13.0</td>
+              <td>6.8</td>
+            </tr>
+            <tr>
+              <td>6Y</td>
+              <td>6-7 years</td>
+              <td>20</td>
+              <td>13.5</td>
+              <td>7.0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Size Comparison -->
+    <div class="size-comparison">
+      <h3><i class="fas fa-ruler"></i> Brand Sizing Comparison</h3>
+      <table class="size-table">
+        <thead>
+          <tr>
+            <th>Brand</th>
+            <th>Fit</th>
+            <th>Recommendation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Nike</td>
+            <td>True to size</td>
+            <td>Order your regular Nike size</td>
+          </tr>
+          <tr>
+            <td>Adidas</td>
+            <td>True to size</td>
+            <td>Order your regular Adidas size</td>
+          </tr>
+          <tr>
+            <td>New Balance</td>
+            <td>Slightly larger</td>
+            <td>Consider half size up</td>
+          </tr>
+          <tr>
+            <td>Puma</td>
+            <td>True to size</td>
+            <td>Order your regular Puma size</td>
+          </tr>
+          <tr>
+            <td>Jordan</td>
+            <td>True to size</td>
+            <td>Same as Nike sizing</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fitting Tips -->
+    <div class="tips-section">
+      <h3><i class="fas fa-lightbulb"></i> Fitting Tips</h3>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h4>Measure Your Feet</h4>
+          <p>Measure your feet in the afternoon when they're slightly swollen. Stand on a piece of paper and trace both feet.</p>
+        </div>
+        
+        <div class="tip-card">
+          <h4>Consider Socks</h4>
+          <p>Wear the type of socks you normally wear when trying on sneakers for accurate sizing.</p>
+        </div>
+        
+        <div class="tip-card">
+          <h4>Toe Room</h4>
+          <p>Leave about a thumb's width (1.3cm) between your longest toe and the end of the shoe.</p>
+        </div>
+        
+        <div class="tip-card">
+          <h4>Walk Around</h4>
+          <p>Take a few steps in the shoes to ensure they feel comfortable and don't slip.</p>
+        </div>
+        
+        <div class="tip-card">
+          <h4>Try Different Sizes</h4>
+          <p>Sizing can vary between brands. Always check the specific brand's size chart.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brand Logos -->
+    <div class="brand-logos">
+      <div class="brand-logo">
+        <img src="Air Jordan 1.jpg" alt="Nike" style="height: 40px; object-fit: contain;">
+        <strong>NIKE</strong>
+      </div>
+      
+      <div class="brand-logo">
+        <img src="Adidas Superstar.jpg" alt="Adidas" style="height: 40px; object-fit: contain;">
+        <strong>ADIDAS</strong>
+      </div>
+      
+      <div class="brand-logo">
+        <img src="New Balance 550.jpg" alt="New Balance" style="height: 40px; object-fit: contain;">
+        <strong>NEW BALANCE</strong>
+      </div>
+      
+      <div class="brand-logo">
+        <img src="Puma Suede Classic.jpg" alt="Puma" style="height: 40px; object-fit: contain;">
+        <strong>PUMA</strong>
+      </div>
+      
+      <div class="brand-logo">
+        <img src="Air Jordan 4.jpg" alt="Jordan" style="height: 40px; object-fit: contain;">
+        <strong>JORDAN</strong>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Check authentication
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!auth.isLoggedIn()) {
+        window.location.href = 'index.html';
+        return;
+      }
+    });
+
+    function goToSearch() {
+      const query = document.getElementById('searchInput').value;
+      if (query) {
+        window.location.href = 'sneakers.html?search=' + encodeURIComponent(query);
+      } else {
+        window.location.href = 'sneakers.html';
+      }
+    }
+
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          auth.logout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          window.location.href = 'settings.html';
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+
+    // Search on Enter key
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') goToSearch();
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="sneakers.html">All Sneakers</a></li>
+          <li><a href="sneakers.html">New Arrivals</a></li>
+          <li><a href="sneakers.html">Best Sellers</a></li>
+          <li><a href="sneakers.html">On Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="sellers page.html">Sell With Us</a></li>
+          <li><a href="press.html">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram" style="margin-right: 10px;"></i>Instagram</a></li>
+          <li><a href="#"><i class="fab fa-twitter" style="margin-right: 10px;"></i>Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook" style="margin-right: 10px;"></i>Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok" style="margin-right: 10px;"></i>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 All Around Sneakers. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

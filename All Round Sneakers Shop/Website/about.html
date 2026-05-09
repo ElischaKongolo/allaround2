@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <a href="index.html" class="navbar-brand">All<span>Around</span></a>
+    <ul class="nav-links">
+            <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="window.location.href='sneakers.html'"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" style="min-height: 50vh;">
+    <div class="hero-content">
+      <h1>About <span>All Around</span></h1>
+      <p>South Africa's trusted destination for authentic sneakers since 2020</p>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section style="background: #0d0d0d; padding: 80px 30px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+        <div>
+          <h2 style="font-size: 2.5rem; margin-bottom: 25px;">Our <span style="color: #ff6b00;">Story</span></h2>
+          <p style="color: #999; line-height: 1.8; margin-bottom: 20px;">
+            All Around Sneakers was founded in 2020 with a simple mission: to bring the world's most sought-after sneakers to South African sneakerheads. What started as a passion project between friends has grown into one of the country's most trusted sneaker marketplaces.
+          </p>
+          <p style="color: #999; line-height: 1.8;">
+            We believe everyone deserves access to authentic, high-quality sneakers. That's why we've built a platform that connects verified sellers with passionate buyers, ensuring every pair that passes through our marketplace is 100% authentic.
+          </p>
+        </div>
+        <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); border-radius: 20px; padding: 40px; text-align: center;">
+          <i class="fas fa-shoe-prints" style="font-size: 5rem; color: #ff6b00; margin-bottom: 20px;"></i>
+          <h3 style="color: white; margin-bottom: 15px;">50,000+</h3>
+          <p style="color: #666;">Authentic sneakers sold</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values -->
+  <section style="background: #1a1a1a; padding: 80px 30px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">Our <span style="color: #ff6b00;">Values</span></h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+        <div style="background: #0d0d0d; border-radius: 15px; padding: 40px; text-align: center;">
+          <div style="width: 70px; height: 70px; background: rgba(255,107,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
+            <i class="fas fa-certificate" style="font-size: 1.8rem; color: #ff6b00;"></i>
+          </div>
+          <h3 style="color: white; margin-bottom: 15px;">Authenticity</h3>
+          <p style="color: #666; line-height: 1.6;">Every sneaker is verified by our team of experts. We guarantee 100% authentic products or your money back.</p>
+        </div>
+        <div style="background: #0d0d0d; border-radius: 15px; padding: 40px; text-align: center;">
+          <div style="width: 70px; height: 70px; background: rgba(255,107,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
+            <i class="fas fa-handshake" style="font-size: 1.8rem; color: #ff6b00;"></i>
+          </div>
+          <h3 style="color: white; margin-bottom: 15px;">Trust</h3>
+          <p style="color: #666; line-height: 1.6;">We verify every seller and protect every transaction. Shop with confidence knowing you're in good hands.</p>
+        </div>
+        <div style="background: #0d0d0d; border-radius: 15px; padding: 40px; text-align: center;">
+          <div style="width: 70px; height: 70px; background: rgba(255,107,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
+            <i class="fas fa-bolt" style="font-size: 1.8rem; color: #ff6b00;"></i>
+          </div>
+          <h3 style="color: white; margin-bottom: 15px;">Speed</h3>
+          <p style="color: #666; line-height: 1.6;">From checkout to doorstep, we prioritize fast shipping. Get your grails delivered quickly and safely.</p>
+        </div>
+        <div style="background: #0d0d0d; border-radius: 15px; padding: 40px; text-align: center;">
+          <div style="width: 70px; height: 70px; background: rgba(255,107,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
+            <i class="fas fa-users" style="font-size: 1.8rem; color: #ff6b00;"></i>
+          </div>
+          <h3 style="color: white; margin-bottom: 15px;">Community</h3>
+          <p style="color: #666; line-height: 1.6;">We're more than a marketplace - we're a community of sneaker enthusiasts who share a passion for kicks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section style="background: #0d0d0d; padding: 80px 30px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; text-align: center;">
+        <div>
+          <h2 style="font-size: 3rem; color: #ff6b00; margin-bottom: 10px;">50K+</h2>
+          <p style="color: #666;">Sneakers Sold</p>
+        </div>
+        <div>
+          <h2 style="font-size: 3rem; color: #ff6b00; margin-bottom: 10px;">15K+</h2>
+          <p style="color: #666;">Happy Customers</p>
+        </div>
+        <div>
+          <h2 style="font-size: 3rem; color: #ff6b00; margin-bottom: 10px;">500+</h2>
+          <p style="color: #666;">Verified Sellers</p>
+        </div>
+        <div>
+          <h2 style="font-size: 3rem; color: #ff6b00; margin-bottom: 10px;">4.9</h2>
+          <p style="color: #666;">Average Rating</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 80px 30px; text-align: center;">
+    <div style="max-width: 600px; margin: 0 auto;">
+      <h2 style="font-size: 2rem; margin-bottom: 20px;">Ready to Find Your Perfect Pair?</h2>
+      <p style="color: #666; margin-bottom: 30px;">Browse our collection of authentic sneakers from the world's top brands.</p>
+      <a href="sneakers.html" class="btn-primary-custom">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="sneakers.html">All Sneakers</a></li>
+          <li><a href="sneakers.html">New Arrivals</a></li>
+          <li><a href="sneakers.html">Best Sellers</a></li>
+          <li><a href="sneakers.html">On Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="sellers page.html">Sell With Us</a></li>
+          <li><a href="press.html">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram" style="margin-right: 10px;"></i>Instagram</a></li>
+          <li><a href="#"><i class="fab fa-twitter" style="margin-right: 10px;"></i>Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook" style="margin-right: 10px;"></i>Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok" style="margin-right: 10px;"></i>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 All Around Sneakers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+<script src="auth.js"></script>
+<script>
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          confirmLogout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          window.location.href = 'settings.html';
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+  </script>
+</body>
+</html>

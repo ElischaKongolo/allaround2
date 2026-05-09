@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .settings-page {
+      min-height: 100vh;
+      background: var(--bg-dark);
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+      padding: 40px 30px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 15px;
+    }
+    
+    .hero-section p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+    
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .settings-card {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+    
+    .settings-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .settings-card h3 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .settings-card h3 i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+    
+    .setting-label {
+      color: var(--text-light);
+      font-weight: 500;
+      flex: 1;
+    }
+    
+    .setting-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      background: var(--bg-dark);
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .toggle-switch.active {
+      background: var(--accent);
+    }
+    
+    .toggle-switch::before {
+      content: '';
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: all 0.3s;
+    }
+    
+    .toggle-switch.active::before {
+      transform: translateX(30px);
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      background: var(--bg-dark);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      color: var(--text-light);
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    }
+    
+    .form-control::placeholder {
+      color: var(--gray);
+    }
+    
+    .btn-primary-custom {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary-custom:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .btn-danger-custom {
+      background: var(--danger);
+      color: var(--text-light);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-danger-custom:hover {
+      background: #dc3545;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .alert {
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .alert-success {
+      background: rgba(40, 167, 69, 0.2);
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+    
+    .alert-danger {
+      background: rgba(220, 53, 69, 0.2);
+      border: 1px solid var(--danger);
+      color: var(--danger);
+    }
+    
+    .storage-bar {
+      width: 100%;
+      height: 10px;
+      background: var(--bg-dark);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    
+    .storage-fill {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    
+    @media (max-width: 768px) {
+      .settings-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="settings-page" style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <ul class="nav-links">
+      <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="goToSearch()"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1>Settings</h1>
+    <p>Manage your account preferences and privacy settings</p>
+  </section>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <div class="settings-grid">
+      <!-- Account Settings -->
+      <div class="settings-card">
+        <h3><i class="fas fa-user-cog"></i> Account Settings</h3>
+        
+        <div class="setting-item">
+          <div class="setting-label">Email Notifications</div>
+          <div class="setting-control">
+            <div class="toggle-switch" id="emailNotifications" onclick="toggleSetting('emailNotifications')"></div>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Two-Factor Authentication</div>
+          <div class="setting-control">
+            <div class="toggle-switch" id="twoFactorAuth" onclick="toggleSetting('twoFactorAuth')"></div>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Profile Visibility</div>
+          <div class="setting-control">
+            <select class="form-control" id="profileVisibility" onchange="updateSetting('profileVisibility', this.value)">
+              <option value="public">Public</option>
+              <option value="friends">Friends Only</option>
+              <option value="private">Private</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Privacy Settings -->
+      <div class="settings-card">
+        <h3><i class="fas fa-shield-alt"></i> Privacy Settings</h3>
+        
+        <div class="setting-item">
+          <div class="setting-label">Online Status</div>
+          <div class="setting-control">
+            <div class="toggle-switch" id="onlineStatus" onclick="toggleSetting('onlineStatus')"></div>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Message Requests</div>
+          <div class="setting-control">
+            <div class="toggle-switch" id="messageRequests" onclick="toggleSetting('messageRequests')"></div>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Data Collection</div>
+          <div class="setting-control">
+            <div class="toggle-switch" id="dataCollection" onclick="toggleSetting('dataCollection')"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appearance Settings -->
+      <div class="settings-card">
+        <h3><i class="fas fa-palette"></i> Appearance Settings</h3>
+        
+        <div class="setting-item">
+          <div class="setting-label">Theme</div>
+          <div class="setting-control">
+            <select class="form-control" id="theme" onchange="updateSetting('theme', this.value)">
+              <option value="dark">Dark Theme</option>
+              <option value="light">Light Theme</option>
+              <option value="auto">Auto</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Language</div>
+          <div class="setting-control">
+            <select class="form-control" id="language" onchange="updateSetting('language', this.value)">
+              <option value="en">English</option>
+              <option value="af">Afrikaans</option>
+              <option value="zu">Zulu</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Currency</div>
+          <div class="setting-control">
+            <select class="form-control" id="currency" onchange="updateSetting('currency', this.value)">
+              <option value="ZAR">South African Rand (R)</option>
+              <option value="USD">US Dollar ($)</option>
+              <option value="EUR">Euro (€)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shopping Preferences -->
+      <div class="settings-card">
+        <h3><i class="fas fa-shopping-cart"></i> Shopping Preferences</h3>
+        
+        <div class="setting-item">
+          <div class="setting-label">Default Size</div>
+          <div class="setting-control">
+            <select class="form-control" id="defaultSize" onchange="updateSetting('defaultSize', this.value)">
+              <option value="">Select Size</option>
+              <option value="7">US 7</option>
+              <option value="8">US 8</option>
+              <option value="9">US 9</option>
+              <option value="10">US 10</option>
+              <option value="11">US 11</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Price Range</div>
+          <div class="setting-control">
+            <select class="form-control" id="priceRange" onchange="updateSetting('priceRange', this.value)">
+              <option value="all">All Prices</option>
+              <option value="0-1000">R0 - R1000</option>
+              <option value="1000-5000">R1000 - R5000</option>
+              <option value="5000+">R5000+</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Auto-Save Cart</div>
+          <div class="setting-control">
+            <div class="toggle-switch" id="autoSaveCart" onclick="toggleSetting('autoSaveCart')"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data & Storage -->
+      <div class="settings-card">
+        <h3><i class="fas fa-database"></i> Data & Storage</h3>
+        
+        <div class="setting-item">
+          <div class="setting-label">Storage Usage</div>
+          <div class="setting-control">
+            <div class="storage-bar">
+              <div class="storage-fill" id="storageBar" style="width: 25%;"></div>
+            </div>
+            <div style="color: var(--gray); font-size: 0.9rem; margin-top: 5px;" id="storageText">2.5 MB of 10 MB used</div>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Clear Cache</div>
+          <div class="setting-control">
+            <button class="btn-primary-custom" onclick="clearCache()">Clear Cache</button>
+          </div>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-label">Export Data</div>
+          <div class="setting-control">
+            <button class="btn-primary-custom" onclick="exportData()">Export Data</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="settings-card" style="border: 1px solid var(--danger);">
+        <h3><i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i> Danger Zone</h3>
+        
+        <div class="setting-item">
+          <div class="setting-label">Delete Account</div>
+          <div class="setting-control">
+            <button class="btn-danger-custom" onclick="confirmDeleteAccount()">Delete Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Check authentication
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!auth.isLoggedIn()) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      loadSettings();
+    });
+
+    function loadSettings() {
+      // Load settings from localStorage
+      const settings = JSON.parse(localStorage.getItem('userSettings') || '{}');
+      
+      // Apply settings to UI
+      Object.keys(settings).forEach(key => {
+        const element = document.getElementById(key);
+        if (element) {
+          if (element.type === 'checkbox' || element.classList.contains('toggle-switch')) {
+            element.classList.toggle('active', settings[key]);
+          } else if (element.tagName === 'SELECT') {
+            element.value = settings[key];
+          }
+        }
+      });
+      
+      // Update storage usage
+      updateStorageUsage();
+    }
+
+    function toggleSetting(settingId) {
+      const toggle = document.getElementById(settingId);
+      const isActive = toggle.classList.contains('active');
+      
+      toggle.classList.toggle('active', !isActive);
+      
+      // Save to localStorage
+      const settings = JSON.parse(localStorage.getItem('userSettings') || '{}');
+      settings[settingId] = !isActive;
+      localStorage.setItem('userSettings', JSON.stringify(settings));
+      
+      showAlert(`${settingId} ${!isActive ? 'enabled' : 'disabled'}`, 'success');
+    }
+
+    function updateSetting(settingId, value) {
+      // Save to localStorage
+      const settings = JSON.parse(localStorage.getItem('userSettings') || '{}');
+      settings[settingId] = value;
+      localStorage.setItem('userSettings', JSON.stringify(settings));
+      
+      showAlert(`${settingId} updated to ${value}`, 'success');
+      
+      // Special handling for theme
+      if (settingId === 'theme') {
+        applyTheme(value);
+      }
+    }
+
+    function applyTheme(theme) {
+      // In a real application, this would apply theme
+      if (theme === 'light') {
+        document.body.style.background = '#f5f5f5';
+        showAlert('Light theme applied (demo only)', 'success');
+      } else {
+        document.body.style.background = '';
+        showAlert('Dark theme applied', 'success');
+      }
+    }
+
+    function clearCache() {
+      if (confirm('Clear all cached data? This will remove saved preferences and temporary data.')) {
+        // Clear cache (in real app, this would clear application cache)
+        localStorage.removeItem('userSettings');
+        localStorage.removeItem('cachedData');
+        
+        // Reset UI
+        loadSettings();
+        showAlert('Cache cleared successfully', 'success');
+      }
+    }
+
+    function exportData() {
+      const user = auth.getCurrentUser();
+      const settings = JSON.parse(localStorage.getItem('userSettings') || '{}');
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      
+      const exportData = {
+        user: user,
+        settings: settings,
+        cart: cart,
+        exportDate: new Date().toISOString()
+      };
+      
+      const dataStr = JSON.stringify(exportData, null, 2);
+      const dataBlob = new Blob([dataStr], {type: 'application/json'});
+      const url = URL.createObjectURL(dataBlob);
+      
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `allaround_data_${user.username}_${new Date().toISOString().split('T')[0]}.json`;
+      link.click();
+      
+      showAlert('Data exported successfully', 'success');
+    }
+
+    function confirmDeleteAccount() {
+      const confirmation = prompt('Type "DELETE" to confirm account deletion. This action cannot be undone:');
+      
+      if (confirmation === 'DELETE') {
+        if (confirm('Are you absolutely sure? This will permanently delete your account and all data.')) {
+          // In a real application, this would delete account from database
+          alert('Account deletion feature coming soon. Please contact support for assistance.');
+        }
+      } else if (confirmation !== null) {
+        showAlert('Confirmation text does not match', 'danger');
+      }
+    }
+
+    function resetSettings() {
+      if (confirm('Reset all settings to default values?')) {
+        localStorage.removeItem('userSettings');
+        loadSettings();
+        showAlert('Settings reset to defaults', 'success');
+      }
+    }
+
+    function updateStorageUsage() {
+      // Simulate storage usage calculation
+      const totalStorage = 10 * 1024 * 1024; // 10MB in bytes
+      const usedStorage = JSON.stringify(localStorage).length * 2; // Rough estimate
+      const usagePercent = Math.min((usedStorage / totalStorage) * 100, 100);
+      
+      document.getElementById('storageBar').style.width = usagePercent + '%';
+      document.getElementById('storageText').textContent = 
+        `${(usedStorage / 1024 / 1024).toFixed(1)} MB of 10 MB used`;
+    }
+
+    function showAlert(message, type) {
+      const alertDiv = document.createElement('div');
+      alertDiv.className = `alert alert-${type}`;
+      alertDiv.textContent = message;
+      
+      const container = document.querySelector('.content-container');
+      container.insertBefore(alertDiv, container.firstChild);
+      
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 5000);
+    }
+
+    function goToSearch() {
+      const query = document.getElementById('searchInput').value;
+      if (query) {
+        window.location.href = 'sneakers.html?search=' + encodeURIComponent(query);
+      } else {
+        window.location.href = 'sneakers.html';
+      }
+    }
+
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          auth.logout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          // Already on settings
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+
+    // Search on Enter key
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') goToSearch();
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="sneakers.html">All Sneakers</a></li>
+          <li><a href="sneakers.html">New Arrivals</a></li>
+          <li><a href="sneakers.html">Best Sellers</a></li>
+          <li><a href="sneakers.html">On Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="sellers page.html">Sell With Us</a></li>
+          <li><a href="press.html">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram" style="margin-right: 10px;"></i>Instagram</a></li>
+          <li><a href="#"><i class="fab fa-twitter" style="margin-right: 10px;"></i>Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook" style="margin-right: 10px;"></i>Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok" style="margin-right: 10px;"></i>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 All Around Sneakers. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

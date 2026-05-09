@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <a href="index.html" class="navbar-brand">All<span>Around</span></a>
+    <ul class="nav-links">
+            <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="window.location.href='sneakers.html'"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" style="min-height: 50vh;">
+    <div class="hero-content">
+      <h1>Get in <span>Touch</span></h1>
+      <p>We're here to help. Reach out to our team for any questions or concerns.</p>
+    </div>
+  </section>
+
+  <!-- Featured Sneakers Section -->
+  <section style="background: #0d0d0d; padding: 60px 30px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: white;">Featured <span style="color: #ff6b00;">Sneakers</span></h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 40px;">
+        <!-- Sneaker 1 -->
+        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: all 0.3s ease;">
+          <img src="Air Jordan 1.jpg" alt="Air Jordan 1" style="width: 100%; height: 200px; object-fit: cover;">
+          <div style="padding: 20px;">
+            <h3 style="margin: 0 0 10px 0; color: #333; font-size: 1.2rem;">Air Jordan 1</h3>
+            <p style="color: #ff6b00; font-weight: 600; margin: 0;">R1000</p>
+          </div>
+        </div>
+
+        <!-- Sneaker 2 -->
+        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: all 0.3s ease;">
+          <img src="Yeezy Boost 350.jpg" alt="Yeezy Boost 350" style="width: 100%; height: 200px; object-fit: cover;">
+          <div style="padding: 20px;">
+            <h3 style="margin: 0 0 10px 0; color: #333; font-size: 1.2rem;">Yeezy Boost 350</h3>
+            <p style="color: #ff6b00; font-weight: 600; margin: 0;">R800</p>
+          </div>
+        </div>
+
+        <!-- Sneaker 3 -->
+        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: all 0.3s ease;">
+          <img src="airfoce.jpg" alt="Nike Air Force 1" style="width: 100%; height: 200px; object-fit: cover;">
+          <div style="padding: 20px;">
+            <h3 style="margin: 0 0 10px 0; color: #333; font-size: 1.2rem;">Nike Air Force 1</h3>
+            <p style="color: #ff6b00; font-weight: 600; margin: 0;">R900</p>
+          </div>
+        </div>
+
+        <!-- Sneaker 4 -->
+        <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.15); transition: all 0.3s ease;">
+          <img src="Adidas Superstar.jpg" alt="Adidas Superstar" style="width: 100%; height: 200px; object-fit: cover;">
+          <div style="padding: 20px;">
+            <h3 style="margin: 0 0 10px 0; color: #333; font-size: 1.2rem;">Adidas Superstar</h3>
+            <p style="color: #ff6b00; font-weight: 600; margin: 0;">R500</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="sneakers.html" style="display: inline-block; background: #ff6b00; color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">View All Sneakers</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section style="background: #0d0d0d; padding: 80px 30px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+        <!-- Contact Info -->
+        <div>
+          <h2 style="font-size: 2rem; margin-bottom: 30px;">Contact <span style="color: #ff6b00;">Information</span></h2>
+
+          <div style="margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="width: 50px; height: 50px; background: rgba(255,107,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+                <i class="fas fa-envelope" style="color: #ff6b00; font-size: 1.2rem;"></i>
+              </div>
+              <div>
+                <p style="color: #666; margin: 0; font-size: 0.9rem;">Email Us</p>
+                <p style="color: white; margin: 5px 0 0; font-weight: 500;">support@allaroundsneakers.co.za</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="width: 50px; height: 50px; background: rgba(255,107,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+                <i class="fas fa-phone" style="color: #ff6b00; font-size: 1.2rem;"></i>
+              </div>
+              <div>
+                <p style="color: #666; margin: 0; font-size: 0.9rem;">Call Us</p>
+                <p style="color: white; margin: 5px 0 0; font-weight: 500;">+27 12 345 6789</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 30px;">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="width: 50px; height: 50px; background: rgba(255,107,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+                <i class="fas fa-map-marker-alt" style="color: #ff6b00; font-size: 1.2rem;"></i>
+              </div>
+              <div>
+                <p style="color: #666; margin: 0; font-size: 0.9rem;">Visit Us</p>
+                <p style="color: white; margin: 5px 0 0; font-weight: 500;">123 Sneaker Street, Johannesburg, SA</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 30px;">
+            <div style="display: flex; align-items: center;">
+              <div style="width: 50px; height: 50px; background: rgba(255,107,0,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+                <i class="fas fa-clock" style="color: #ff6b00; font-size: 1.2rem;"></i>
+              </div>
+              <div>
+                <p style="color: #666; margin: 0; font-size: 0.9rem;">Business Hours</p>
+                <p style="color: white; margin: 5px 0 0; font-weight: 500;">Mon - Fri: 9AM - 6PM | Sat: 10AM - 4PM</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div style="display: flex; gap: 15px;">
+            <p style="color: #666; margin-bottom: 15px;">Follow Us</p>
+            <div style="display: flex; gap: 15px;">
+              <a href="https://instagram.com/allaroundsneakers" target="_blank" style="width: 45px; height: 45px; background: #1a1a1a; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s;">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://twitter.com/allaroundsneakers" target="_blank" style="width: 45px; height: 45px; background: #1a1a1a; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s;">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://facebook.com/allaroundsneakers" target="_blank" style="width: 45px; height: 45px; background: #1a1a1a; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s;">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://tiktok.com/@allaroundsneakers" target="_blank" style="width: 45px; height: 45px; background: #1a1a1a; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s;">
+                <i class="fab fa-tiktok"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div style="background: var(--primary); border-radius: 20px; padding: 40px; color: var(--text-light); border: 1px solid rgba(255,255,255,0.1);">
+          <h3 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--text-light);">Send us a Message</h3>
+          <form id="contactForm" onsubmit="submitContactForm(event)">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+              <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--gray);">First Name</label>
+                <input type="text" id="contactFirstName" required style="width: 100%; padding: 12px 15px; background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-light);">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--gray);">Last Name</label>
+                <input type="text" id="contactLastName" required style="width: 100%; padding: 12px 15px; background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-light);">
+              </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--gray);">Email Address</label>
+              <input type="email" id="contactEmail" required style="width: 100%; padding: 12px 15px; background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-light);">
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--gray);">Subject</label>
+              <select id="contactSubject" style="width: 100%; padding: 12px 15px; background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-light);">
+                <option>General Inquiry</option>
+                <option>Order Status</option>
+                <option>Return/Exchange</option>
+                <option>Selling Sneakers</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div style="margin-bottom: 25px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500; color: var(--gray);">Message</label>
+              <textarea id="contactMessage" rows="5" required style="width: 100%; padding: 12px 15px; background: var(--bg-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-light); resize: vertical;"></textarea>
+            </div>
+            <button type="submit" style="width: 100%; background: var(--accent); color: var(--text-light); border: none; padding: 15px; border-radius: 30px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s;">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section style="background: var(--primary); padding: 80px 30px;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <h2 style="text-align: center; font-size: 2rem; margin-bottom: 50px; color: var(--text-light);">Frequently Asked <span style="color: var(--accent);">Questions</span></h2>
+
+      <div style="display: flex; flex-direction: column; gap: 15px;">
+        <div style="background: rgba(255,255,255,0.05); border-radius: 10px; padding: 25px; border: 1px solid rgba(255,255,255,0.1);">
+          <h4 style="margin-bottom: 10px; color: var(--text-light);"><i class="fas fa-question-circle" style="color: var(--accent); margin-right: 10px;"></i>How do I know sneakers are authentic?</h4>
+          <p style="color: var(--gray); margin: 0;">Every sneaker sold on our platform goes through a rigorous authentication process by our team of experts. We guarantee 100% authentic products or your money back.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 10px; padding: 25px; border: 1px solid rgba(255,255,255,0.1);">
+          <h4 style="margin-bottom: 10px; color: var(--text-light);"><i class="fas fa-shipping-fast" style="color: var(--accent); margin-right: 10px;"></i>How long does shipping take?</h4>
+          <p style="color: var(--gray); margin: 0;">Standard shipping within South Africa takes 3-5 business days. Express shipping (1-2 business days) is available for an additional fee.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 10px; padding: 25px; border: 1px solid rgba(255,255,255,0.1);">
+          <h4 style="margin-bottom: 10px; color: var(--text-light);"><i class="fas fa-undo" style="color: var(--accent); margin-right: 10px;"></i>What is Your return policy?</h4>
+          <p style="color: var(--gray); margin: 0;">We offer a 30-day return policy for unworn sneakers in original condition. Simply contact our support team to initiate a return.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.05); border-radius: 10px; padding: 25px; border: 1px solid rgba(255,255,255,0.1);">
+          <h4 style="margin-bottom: 10px; color: var(--text-light);"><i class="fas fa-store" style="color: var(--accent); margin-right: 10px;"></i>How do I sell my sneakers?</h4>
+          <p style="color: var(--gray); margin: 0;">Visit our <a href="sellers page.html" style="color: var(--accent);">Sellers Page</a> to list your sneakers. Create an account, upload photos, set your price, and We'll handle the rest!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="sneakers.html">All Sneakers</a></li>
+          <li><a href="sneakers.html">New Arrivals</a></li>
+          <li><a href="sneakers.html">Best Sellers</a></li>
+          <li><a href="sneakers.html">On Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="sellers page.html">Sell With Us</a></li>
+          <li><a href="press.html">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram" style="margin-right: 10px;"></i>Instagram</a></li>
+          <li><a href="#"><i class="fab fa-twitter" style="margin-right: 10px;"></i>Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook" style="margin-right: 10px;"></i>Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok" style="margin-right: 10px;"></i>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="color: var(--gray);">&copy; 2025 All Around Sneakers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Success Modal -->
+  <div id="successModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: white; border-radius: 20px; max-width: 400px; width: 100%; padding: 40px; text-align: center; color: #1a1a1a;">
+      <div style="width: 80px; height: 80px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+        <i class="fas fa-check" style="font-size: 2.5rem; color: white;"></i>
+      </div>
+      <h2 style="margin-bottom: 10px;">Message Sent!</h2>
+      <p style="color: #666; margin-bottom: 25px;">Thank you for reaching out. We'll get back to you within 24 hours.</p>
+      <button onclick="closeSuccessModal()" style="background: #ff6b00; color: white; border: none; padding: 12px 30px; border-radius: 30px; font-weight: 600; cursor: pointer;">Got it</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    function submitContactForm(e) {
+      e.preventDefault();
+      // Show success modal
+      document.getElementById('successModal').style.display = 'flex';
+      // Reset form
+      document.getElementById('contactForm').reset();
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('successModal').style.display = 'none';
+    }
+
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          confirmLogout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          window.location.href = 'settings.html';
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+
+    // Close modal on overlay click
+    document.getElementById('successModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeSuccessModal();
+      }
+    });
+  </script>
+</body>
+</html>

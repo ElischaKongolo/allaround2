@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .order-history-page {
+      min-height: 100vh;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+      padding: 40px 30px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 15px;
+    }
+    
+    .hero-section p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+    
+    .order-filters {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 30px;
+    }
+    
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .filter-group {
+      margin-bottom: 15px;
+    }
+    
+    .filter-group label {
+      display: block;
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      color: #333333;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    }
+    
+    .form-control::placeholder {
+      color: #666666;
+    }
+    
+    .btn-primary-custom {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary-custom:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .orders-section {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .orders-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    
+    .orders-header h2 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .order-stats {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .stat-badge {
+      background: rgba(255,107,0,0.1);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    .order-grid {
+      display: grid;
+      gap: 20px;
+    }
+    
+    .order-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 25px;
+      transition: all 0.3s;
+    }
+    
+    .order-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
+    }
+    
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .order-info {
+      flex: 1;
+    }
+    
+    .order-number {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    
+    .order-date {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .order-status {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .status-completed {
+      background: rgba(40, 167, 69, 0.2);
+      color: var(--success);
+    }
+    
+    .status-processing {
+      background: rgba(255, 193, 7, 0.2);
+      color: var(--accent);
+    }
+    
+    .status-cancelled {
+      background: rgba(220, 53, 69, 0.2);
+      color: var(--danger);
+    }
+    
+    .order-items {
+      margin-bottom: 20px;
+    }
+    
+    .order-item {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      padding: 15px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 10px;
+    }
+    
+    .item-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+      background: var(--bg-dark);
+    }
+    
+    .item-details {
+      flex: 1;
+    }
+    
+    .item-name {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .item-meta {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .total-label {
+      color: var(--gray);
+      font-size: 1rem;
+    }
+    
+    .total-amount {
+      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .order-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .btn-action {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-view {
+      background: var(--accent);
+      color: var(--text-light);
+    }
+    
+    .btn-reorder {
+      background: var(--success);
+      color: var(--text-light);
+    }
+    
+    .btn-action:hover {
+      opacity: 0.8;
+      transform: translateY(-1px);
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 60px 30px;
+      color: var(--gray);
+    }
+    
+    .empty-state i {
+      font-size: 4rem;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    
+    .alert {
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .alert-success {
+      background: rgba(40, 167, 69, 0.2);
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+    
+    @media (max-width: 768px) {
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .order-header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .order-stats {
+        flex-wrap: wrap;
+      }
+      
+      .order-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .item-image {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body class="order-history-page" style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <ul class="nav-links">
+      <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="goToSearch()"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1>Order History</h1>
+    <p>Track and manage all your past purchases</p>
+  </section>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <!-- Order Filters -->
+    <div class="order-filters">
+      <h3 style="color: var(--text-light); margin-bottom: 20px;">Filter Orders</h3>
+      <div class="filter-grid">
+        <div class="filter-group">
+          <label>Order Status</label>
+          <select class="form-control" id="statusFilter" onchange="filterOrders()">
+            <option value="all">All Orders</option>
+            <option value="completed">Completed</option>
+            <option value="processing">Processing</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>Date Range</label>
+          <select class="form-control" id="dateFilter" onchange="filterOrders()">
+            <option value="all">All Time</option>
+            <option value="30">Last 30 Days</option>
+            <option value="90">Last 3 Months</option>
+            <option value="365">Last Year</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label>Search Orders</label>
+          <input type="text" class="form-control" id="searchFilter" placeholder="Search by product name..." onkeyup="filterOrders()">
+        </div>
+      </div>
+      
+      <button class="btn-primary-custom" onclick="clearFilters()">Clear Filters</button>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="orders-section">
+      <div class="orders-header">
+        <h2>Your Orders</h2>
+        <div class="order-stats">
+          <div class="stat-badge">Total: <span id="totalOrders">0</span></div>
+          <div class="stat-badge">Completed: <span id="completedOrders">0</span></div>
+        </div>
+      </div>
+      
+      <div id="ordersContainer" class="order-grid">
+        <!-- Orders will be populated here -->
+      </div>
+      
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <i class="fas fa-shopping-cart"></i>
+        <h3>No Orders Found</h3>
+        <p>You haven't placed any orders yet. Start shopping to see your order history here.</p>
+        <button class="btn-primary-custom" onclick="window.location.href='sneakers.html'">Start Shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    let allOrders = [];
+    let filteredOrders = [];
+
+    // Check authentication
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!auth.isLoggedIn()) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      loadOrders();
+    });
+
+    function loadOrders() {
+      const user = auth.getCurrentUser();
+      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      
+      // Filter orders for current user
+      allOrders = orders.filter(order => order.customerId === user.id);
+      filteredOrders = [...allOrders];
+      
+      updateOrderStats();
+      displayOrders();
+    }
+
+    function updateOrderStats() {
+      const totalOrders = allOrders.length;
+      const completedOrders = allOrders.filter(order => order.status === 'completed').length;
+      
+      document.getElementById('totalOrders').textContent = totalOrders;
+      document.getElementById('completedOrders').textContent = completedOrders;
+    }
+
+    function displayOrders() {
+      const container = document.getElementById('ordersContainer');
+      const emptyState = document.getElementById('emptyState');
+      
+      if (filteredOrders.length === 0) {
+        container.style.display = 'none';
+        emptyState.style.display = 'block';
+        return;
+      }
+      
+      container.style.display = 'grid';
+      emptyState.style.display = 'none';
+      
+      container.innerHTML = filteredOrders.map(order => `
+        <div class="order-card">
+          <div class="order-header">
+            <div class="order-info">
+              <div class="order-number">Order #${order.id || Math.random().toString(36).substr(2, 9).toUpperCase()}</div>
+              <div class="order-date">${new Date(order.orderDate).toLocaleDateString()}</div>
+            </div>
+            <div class="order-status status-${order.status || 'completed'}">${order.status || 'Completed'}</div>
+          </div>
+          
+          <div class="order-items">
+            <div class="order-item">
+              <img src="${order.productImage || 'https://via.placeholder.com/80x80/1a1a1a/ffffff?text=Sneaker'}" alt="${order.productName}" class="item-image">
+              <div class="item-details">
+                <div class="item-name">${order.productName}</div>
+                <div class="item-meta">
+                  Size: ${order.size || 'N/A'} | Quantity: ${order.quantity || 1}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="order-total">
+            <span class="total-label">Total Amount:</span>
+            <span class="total-amount">R${order.total.toFixed(2)}</span>
+          </div>
+          
+          <div class="order-actions">
+            <button class="btn-action btn-view" onclick="viewOrderDetails('${order.id}')">View Details</button>
+            <button class="btn-action btn-reorder" onclick="reorderItem('${order.productName}')">Reorder</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterOrders() {
+      const statusFilter = document.getElementById('statusFilter').value;
+      const dateFilter = document.getElementById('dateFilter').value;
+      const searchFilter = document.getElementById('searchFilter').value.toLowerCase();
+      
+      filteredOrders = allOrders.filter(order => {
+        // Status filter
+        if (statusFilter !== 'all' && order.status !== statusFilter) {
+          return false;
+        }
+        
+        // Date filter
+        if (dateFilter !== 'all') {
+          const orderDate = new Date(order.orderDate);
+          const cutoffDate = new Date();
+          cutoffDate.setDate(cutoffDate.getDate() - parseInt(dateFilter));
+          if (orderDate < cutoffDate) {
+            return false;
+          }
+        }
+        
+        // Search filter
+        if (searchFilter && !order.productName.toLowerCase().includes(searchFilter)) {
+          return false;
+        }
+        
+        return true;
+      });
+      
+      displayOrders();
+    }
+
+    function clearFilters() {
+      document.getElementById('statusFilter').value = 'all';
+      document.getElementById('dateFilter').value = 'all';
+      document.getElementById('searchFilter').value = '';
+      
+      filteredOrders = [...allOrders];
+      displayOrders();
+    }
+
+    function viewOrderDetails(orderId) {
+      const order = allOrders.find(o => o.id === orderId);
+      if (order) {
+        const details = `
+          Order Details:
+          
+          Order Number: #${order.id || 'N/A'}
+          Date: ${new Date(order.orderDate).toLocaleDateString()}
+          Status: ${order.status || 'Completed'}
+          
+          Product: ${order.productName}
+          Size: ${order.size || 'N/A'}
+          Quantity: ${order.quantity || 1}
+          Price: R${order.price.toFixed(2)}
+          Total: R${order.total.toFixed(2)}
+          
+          Shipping Address: ${order.shippingAddress || 'N/A'}
+          Payment Method: ${order.paymentMethod || 'N/A'}
+        `;
+        
+        alert(details);
+      }
+    }
+
+    function reorderItem(productName) {
+      // Add item to cart
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const existingItem = cart.find(item => item.name === productName);
+      
+      if (existingItem) {
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
+      } else {
+        cart.push({
+          id: Date.now(),
+          name: productName,
+          quantity: 1,
+          price: 0 // Would need to fetch from products
+        });
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      alert('Item added to cart! Redirecting to cart...');
+      setTimeout(() => {
+        window.location.href = 'Add cart page.html';
+      }, 1000);
+    }
+
+    function goToSearch() {
+      const query = document.getElementById('searchInput').value;
+      if (query) {
+        window.location.href = 'sneakers.html?search=' + encodeURIComponent(query);
+      } else {
+        window.location.href = 'sneakers.html';
+      }
+    }
+
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          auth.logout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          window.location.href = 'settings.html';
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+
+    // Search on Enter key
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') goToSearch();
+    });
+  </script>
+</body>
+</html>

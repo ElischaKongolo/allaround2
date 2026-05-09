@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Press | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .press-page {
+      min-height: 100vh;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+      padding: 60px 30px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+    
+    .hero-section p {
+      color: var(--gray);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 30px;
+    }
+    
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    
+    .press-card {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .press-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .press-card h3 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .press-card h3 i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .press-card .date {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    
+    .press-card p {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .press-card .read-more {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    .press-card .read-more:hover {
+      color: #ff8c42;
+      transform: translateX(3px);
+    }
+    
+    .media-section {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 60px;
+    }
+    
+    .media-section h2 {
+      color: var(--text-light);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .media-section h2 i {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+    
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    
+    .media-item {
+      background: rgba(255,255,255,0.02);
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .media-item:hover {
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-3px);
+    }
+    
+    .media-item i {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+    
+    .media-item h4 {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .media-item p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    
+    .media-item .contact-btn {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .media-item .contact-btn:hover {
+      background: #ff8c42;
+      color: var(--text-light);
+      transform: translateY(-2px);
+    }
+    
+    .contact-section {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border-radius: 15px;
+      padding: 40px;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+    
+    .contact-section h2 {
+      color: var(--text-light);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    
+    .contact-item {
+      text-align: center;
+    }
+    
+    .contact-item i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    
+    .contact-item h4 {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .contact-item p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+      
+      .press-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-info {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body class="press-page" style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <ul class="nav-links">
+      <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="goToSearch()"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1>Press <span style="color: #ff6b00;">Room</span></h1>
+    <p>Stay updated with the latest news, announcements, and media coverage about All Around Sneakers</p>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+      <div style="text-align: center;">
+        <h3 style="color: #ff6b00; font-size: 2rem; font-weight: 700;">50+</h3>
+        <p style="color: #666;">Press Mentions</p>
+      </div>
+      <div style="text-align: center;">
+        <h3 style="color: #ff6b00; font-size: 2rem; font-weight: 700;">15+</h3>
+        <p style="color: #666;">Media Features</p>
+      </div>
+      <div style="text-align: center;">
+        <h3 style="color: #ff6b00; font-size: 2rem; font-weight: 700;">2020</h3>
+        <p style="color: #666;">Founded</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <!-- Latest Press Releases -->
+    <div class="press-grid">
+      <!-- Press Release 1 -->
+      <div class="press-card">
+        <h3><i class="fas fa-newspaper"></i> All Around Sneakers Raises R2M in Series A</h3>
+        <div class="date">March 15, 2025</div>
+        <p>All Around Sneakers is excited to announce the successful completion of our Series A funding round, raising R2 million to expand our operations and enhance our platform capabilities. This investment will help us scale our authentication processes and improve customer experience.</p>
+        <a href="#" class="read-more" onclick="showPressRelease('series-a-funding')">Read More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Press Release 2 -->
+      <div class="press-card">
+        <h3><i class="fas fa-award"></i> Named Fastest Growing Sneaker Marketplace in SA</h3>
+        <div class="date">February 28, 2025</div>
+        <p>We're proud to be recognized as South Africa's fastest growing sneaker marketplace for 2024. This achievement reflects our commitment to authentic products, excellent customer service, and innovative technology solutions.</p>
+        <a href="#" class="read-more" onclick="showPressRelease('fastest-growing')">Read More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Press Release 3 -->
+      <div class="press-card">
+        <h3><i class="fas fa-handshake"></i> Partnership with Nike South Africa</h3>
+        <div class="date">January 20, 2025</div>
+        <p>All Around Sneakers announces strategic partnership with Nike South Africa to bring exclusive sneaker releases and authenticated products to South African sneakerheads. This partnership strengthens our commitment to authenticity.</p>
+        <a href="#" class="read-more" onclick="showPressRelease('nike-partnership')">Read More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Press Release 4 -->
+      <div class="press-card">
+        <h3><i class="fas fa-mobile-alt"></i> Launch of Mobile App Version 2.0</h3>
+        <div class="date">December 10, 2024</div>
+        <p>Our completely redesigned mobile app features enhanced authentication, improved user interface, and real-time sneaker release notifications. Available on iOS and Android platforms.</p>
+        <a href="#" class="read-more" onclick="showPressRelease('mobile-app-2')">Read More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Press Release 5 -->
+      <div class="press-card">
+        <h3><i class="fas fa-users"></i> Community Milestone: 50,000+ Satisfied Customers</h3>
+        <div class="date">November 15, 2024</div>
+        <p>We're celebrating a major milestone with over 50,000 satisfied customers across South Africa. This achievement demonstrates our commitment to excellent service and authentic sneaker delivery.</p>
+        <a href="#" class="read-more" onclick="showPressRelease('milestone-50k')">Read More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Press Release 6 -->
+      <div class="press-card">
+        <h3><i class="fas fa-shield-alt"></i> Enhanced Authentication System Launch</h3>
+        <div class="date">October 5, 2024</div>
+        <p>Our new advanced authentication system ensures 100% authentic sneakers with blockchain-verified certificates and multi-point authentication checks. This technology sets new standards in sneaker authentication.</p>
+        <a href="#" class="read-more" onclick="showPressRelease('auth-system')">Read More <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Media Coverage -->
+    <div class="media-section">
+      <h2><i class="fas fa-tv"></i> Media Coverage</h2>
+      <div class="media-grid">
+        <div class="media-item">
+          <i class="fas fa-newspaper"></i>
+          <h4>Business Day</h4>
+          <p>Featured in Business Day's "Startups to Watch" section for our innovative approach to sneaker authentication.</p>
+          <button class="contact-btn" onclick="showMediaInquiryForm('Business Day')">Request Interview</button>
+        </div>
+        
+        <div class="media-item">
+          <i class="fas fa-microphone"></i>
+          <h4>702 Talk Radio</h4>
+          <p>Interview on 702 Talk about our mission to combat counterfeit sneakers in South Africa.</p>
+          <button class="contact-btn" onclick="showMediaInquiryForm('702 Talk Radio')">Request Interview</button>
+        </div>
+        
+        <div class="media-item">
+          <i class="fas fa-video"></i>
+          <h4>SABC News</h4>
+          <p>Featured on SABC News for our rapid growth and impact on South African sneaker culture.</p>
+          <button class="contact-btn" onclick="showMediaInquiryForm('SABC News')">Request Interview</button>
+        </div>
+        
+        <div class="media-item">
+          <i class="fas fa-podcast"></i>
+          <h4>The Startup Show Podcast</h4>
+          <p>Guest appearance discussing entrepreneurship and building trust in e-commerce.</p>
+          <button class="contact-btn" onclick="showMediaInquiryForm('The Startup Show Podcast')">Request Interview</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Media Inquiry Form Modal -->
+    <div id="mediaInquiryModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center; padding: 20px;">
+      <div style="background: white; border-radius: 20px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; color: #1a1a1a;">
+        <div style="padding: 30px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h2 style="margin: 0; color: #1a1a1a;">Media Inquiry Form</h2>
+            <button onclick="closeMediaInquiryModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
+          </div>
+          
+          <form id="mediaInquiryForm" onsubmit="submitMediaInquiry(event)">
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Media Outlet *</label>
+              <input type="text" id="mediaOutlet" readonly style="width: 100%; padding: 12px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+              <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">First Name *</label>
+                <input type="text" id="mediaFirstName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Last Name *</label>
+                <input type="text" id="mediaLastName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Email Address *</label>
+              <input type="email" id="mediaEmail" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Phone Number *</label>
+              <input type="tel" id="mediaPhone" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Job Title *</label>
+              <input type="text" id="mediaJobTitle" required placeholder="e.g., Journalist, Producer, Host" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Media Outlet Type *</label>
+              <select id="mediaType" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+                <option value="">Select media type</option>
+                <option value="newspaper">Newspaper</option>
+                <option value="magazine">Magazine</option>
+                <option value="radio">Radio</option>
+                <option value="television">Television</option>
+                <option value="podcast">Podcast</option>
+                <option value="blog">Blog/Online Publication</option>
+                <option value="youtube">YouTube Channel</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Website/Social Media *</label>
+              <input type="url" id="mediaWebsite" required placeholder="https://..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Type of Inquiry *</label>
+              <select id="inquiryType" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+                <option value="">Select inquiry type</option>
+                <option value="interview">Interview Request</option>
+                <option value="quote">Expert Quote</option>
+                <option value="story">Story Idea</option>
+                <option value="partnership">Partnership Inquiry</option>
+                <option value="press-release">Press Release Distribution</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Story Topic *</label>
+              <input type="text" id="storyTopic" required placeholder="What would you like to cover?" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Deadline *</label>
+              <input type="date" id="deadline" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Additional Details</label>
+              <textarea id="mediaDetails" rows="4" placeholder="Any additional information about your inquiry..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333; resize: vertical;"></textarea>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+              <label style="display: flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" id="mediaTerms" required style="margin-right: 10px;">
+                <span style="color: #333;">I confirm this is a legitimate media inquiry *</span>
+              </label>
+            </div>
+            
+            <div style="display: flex; gap: 15px; margin-top: 25px;">
+              <button type="button" onclick="closeMediaInquiryModal()" style="flex: 1; background: #f5f5f5; color: #333; border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer;">Cancel</button>
+              <button type="submit" style="flex: 1; background: #ff6b00; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer;">Submit Inquiry</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Media Success Modal -->
+    <div id="mediaSuccessModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center; padding: 20px;">
+      <div style="background: white; border-radius: 20px; max-width: 400px; width: 100%; padding: 40px; text-align: center; color: #1a1a1a;">
+        <div style="width: 80px; height: 80px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+          <i class="fas fa-check" style="font-size: 2.5rem; color: white;"></i>
+        </div>
+        <h2 style="margin-bottom: 10px;">Media Inquiry Submitted!</h2>
+        <p style="color: #666; margin-bottom: 25px;">Thank you for your media inquiry. Our press team will review your request and respond within 24 hours.</p>
+        <button onclick="closeMediaSuccessModal()" style="background: #ff6b00; color: white; border: none; padding: 12px 30px; border-radius: 30px; font-weight: 600; cursor: pointer;">Got it</button>
+      </div>
+    </div>
+
+    <!-- Press Contact Section -->
+    <div class="contact-section">
+      <h2>Press Contact</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <h4>Email</h4>
+          <p>press@allaroundsneakers.co.za</p>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <h4>Phone</h4>
+          <p>+27 11 234 5678</p>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fas fa-user"></i>
+          <h4>Media Contact</h4>
+          <p>Sarah Johnson<br>Head of Communications</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="sneakers.html">All Sneakers</a></li>
+          <li><a href="sneakers.html">New Arrivals</a></li>
+          <li><a href="sneakers.html">Best Sellers</a></li>
+          <li><a href="sneakers.html">On Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="sellers page.html">Sell With Us</a></li>
+          <li><a href="press.html">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram" style="margin-right: 10px;"></i>Instagram</a></li>
+          <li><a href="#"><i class="fab fa-twitter" style="margin-right: 10px;"></i>Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook" style="margin-right: 10px;"></i>Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok" style="margin-right: 10px;"></i>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 All Around Sneakers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          confirmLogout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          window.location.href = 'settings.html';
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+
+    function showPressRelease(releaseId) {
+      // In a real application, this would show full press release
+      alert(`Full press release for ${releaseId} would be displayed here.\n\nThis is a demo version.`);
+    }
+
+    function showMediaInquiryForm(mediaOutlet) {
+      document.getElementById('mediaOutlet').value = mediaOutlet;
+      document.getElementById('mediaInquiryModal').style.display = 'flex';
+    }
+
+    function closeMediaInquiryModal() {
+      document.getElementById('mediaInquiryModal').style.display = 'none';
+      document.getElementById('mediaInquiryForm').reset();
+    }
+
+    function closeMediaSuccessModal() {
+      document.getElementById('mediaSuccessModal').style.display = 'none';
+    }
+
+    function submitMediaInquiry(event) {
+      event.preventDefault();
+      
+      // Get form data
+      const formData = {
+        mediaOutlet: document.getElementById('mediaOutlet').value,
+        firstName: document.getElementById('mediaFirstName').value,
+        lastName: document.getElementById('mediaLastName').value,
+        email: document.getElementById('mediaEmail').value,
+        phone: document.getElementById('mediaPhone').value,
+        jobTitle: document.getElementById('mediaJobTitle').value,
+        mediaType: document.getElementById('mediaType').value,
+        website: document.getElementById('mediaWebsite').value,
+        inquiryType: document.getElementById('inquiryType').value,
+        storyTopic: document.getElementById('storyTopic').value,
+        deadline: document.getElementById('deadline').value,
+        details: document.getElementById('mediaDetails').value,
+        date: new Date().toISOString(),
+        status: 'pending'
+      };
+      
+      // Store media inquiry in localStorage
+      const mediaInquiries = JSON.parse(localStorage.getItem('mediaInquiries') || '[]');
+      mediaInquiries.push(formData);
+      localStorage.setItem('mediaInquiries', JSON.stringify(mediaInquiries));
+      
+      // Close form and show success modal
+      closeMediaInquiryModal();
+      document.getElementById('mediaSuccessModal').style.display = 'flex';
+      
+      console.log('Media inquiry submitted:', formData);
+    }
+
+    function goToSearch() {
+      const searchTerm = document.getElementById('searchInput').value.trim();
+      if (searchTerm) {
+        window.location.href = `sneakers.html?search=${encodeURIComponent(searchTerm)}`;
+      } else {
+        window.location.href = 'sneakers.html';
+      }
+    }
+
+    // Search on Enter key
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') goToSearch();
+    });
+
+    // Close media inquiry modal on overlay click
+    document.getElementById('mediaInquiryModal')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeMediaInquiryModal();
+      }
+    });
+
+    document.getElementById('mediaSuccessModal')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeMediaSuccessModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if (document.getElementById('mediaInquiryModal').style.display === 'flex') {
+          closeMediaInquiryModal();
+        }
+        if (document.getElementById('mediaSuccessModal').style.display === 'flex') {
+          closeMediaSuccessModal();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

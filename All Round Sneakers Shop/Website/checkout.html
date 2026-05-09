@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <a href="index.html" class="navbar-brand">All<span>Around</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+      </button>
+      <button class="icon-btn" onclick="window.location.href='admin.html'" title="Admin">
+        <i class="fas fa-user"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Checkout Content -->
+  <div style="background: #0d0d0d; min-height: calc(100vh - 300px); padding: 40px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 30px;">
+      <div class="cart-header" style="margin-bottom: 30px;">
+        <h1>Checkout</h1>
+        <a href="Add cart page.html" style="color: #ff6b00; text-decoration: none;">
+          <i class="fas fa-arrow-left"></i> Back to Cart
+        </a>
+      </div>
+
+      <div class="row">
+        <!-- Checkout Form -->
+        <div class="col-lg-7">
+          <div style="background: white; border-radius: 15px; padding: 30px; color: #1a1a1a;">
+            <h3 style="margin-bottom: 25px; font-size: 1.3rem;">Contact Information</h3>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email Address</label>
+              <input type="email" id="email" placeholder="your@email.com" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;">
+            </div>
+
+            <h3 style="margin: 30px 0 25px; font-size: 1.3rem;">Shipping Address</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+              <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 500;">First Name</label>
+                <input type="text" id="firstName" placeholder="First Name" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 500;">Last Name</label>
+                <input type="text" id="lastName" placeholder="Last Name" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;">
+              </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; font-weight: 500;">Street Address</label>
+              <input type="text" id="address" placeholder="Street address, P.O. box, company name" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;">
+            </div>
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+              <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 500;">City</label>
+                <input type="text" id="city" placeholder="City" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 500;">Province</label>
+                <input type="text" id="province" placeholder="Province" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;">
+              </div>
+              <div>
+                <label style="display: block; margin-bottom: 8px; font-weight: 500;">Postal Code</label>
+                <input type="text" id="postalCode" placeholder="Code" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;">
+              </div>
+            </div>
+
+            <h3 style="margin: 30px 0 25px; font-size: 1.3rem;">Payment Method</h3>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+              <label style="display: flex; align-items: center; padding: 15px; border: 2px solid #ff6b00; border-radius: 10px; cursor: pointer; background: rgba(255,107,0,0.05);">
+                <input type="radio" name="payment" value="card" checked style="margin-right: 15px;">
+                <i class="fas fa-credit-card" style="margin-right: 10px; color: #ff6b00;"></i>
+                <span>Credit / Debit Card</span>
+              </label>
+              <label style="display: flex; align-items: center; padding: 15px; border: 1px solid #ddd; border-radius: 10px; cursor: pointer;">
+                <input type="radio" name="payment" value="eft" style="margin-right: 15px;">
+                <i class="fas fa-university" style="margin-right: 10px; color: #666;"></i>
+                <span>Bank Transfer (EFT)</span>
+              </label>
+              <label style="display: flex; align-items: center; padding: 15px; border: 1px solid #ddd; border-radius: 10px; cursor: pointer;">
+                <input type="radio" name="payment" value="cod" style="margin-right: 15px;">
+                <i class="fas fa-money-bill-wave" style="margin-right: 10px; color: #666;"></i>
+                <span>Cash on Delivery</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="col-lg-5">
+          <div style="background: white; border-radius: 15px; padding: 30px; color: #1a1a1a; position: sticky; top: 100px;">
+            <h3 style="margin-bottom: 25px; font-size: 1.3rem;">Order Summary</h3>
+            <div id="orderItems" style="max-height: 300px; overflow-y: auto; margin-bottom: 20px;">
+              <!-- Order items will be rendered here -->
+            </div>
+
+            <div style="border-top: 1px solid #eee; padding-top: 20px;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span style="color: #666;">Subtotal</span>
+                <span id="orderSubtotal" style="font-weight: 600;">R0.00</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <span style="color: #666;">Shipping</span>
+                <span id="orderShipping" style="font-weight: 600;">FREE</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                <span style="color: #666;">Tax (15%)</span>
+                <span id="orderTax" style="font-weight: 600;">R0.00</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding-top: 15px; border-top: 2px solid #eee; font-size: 1.2rem;">
+                <span style="font-weight: 700;">Total</span>
+                <span id="orderTotal" style="font-weight: 700; color: #ff6b00;">R0.00</span>
+              </div>
+            </div>
+
+            <button onclick="confirmOrder()" style="width: 100%; background: #ff6b00; color: white; border: none; padding: 15px; border-radius: 30px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-top: 25px; transition: all 0.3s;">
+              Complete Order
+            </button>
+            <p style="text-align: center; color: #666; font-size: 0.85rem; margin-top: 15px;">
+              <i class="fas fa-lock" style="margin-right: 5px;"></i>Secure checkout - your data is protected
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Receipt Modal -->
+  <div id="receiptModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: white; border-radius: 20px; max-width: 500px; width: 100%; padding: 40px; text-align: center; color: #1a1a1a;">
+      <div style="width: 80px; height: 80px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+        <i class="fas fa-check" style="font-size: 2.5rem; color: white;"></i>
+      </div>
+      <h2 style="margin-bottom: 10px;">Order Confirmed!</h2>
+      <p style="color: #666; margin-bottom: 30px;">Thank you for your purchase. Your order has been received.</p>
+
+      <div id="receiptContent" style="background: #f5f5f5; border-radius: 10px; padding: 25px; margin-bottom: 25px; text-align: left;">
+        <!-- Receipt details will be rendered here -->
+      </div>
+
+      <div style="display: flex; gap: 15px;">
+        <button onclick="printReceipt()" style="flex: 1; background: transparent; color: #1a1a1a; border: 2px solid #ddd; padding: 12px; border-radius: 30px; font-weight: 600; cursor: pointer;">
+          <i class="fas fa-print"></i> Print
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="sneakers.html">All Sneakers</a></li>
+          <li><a href="sneakers.html">New Arrivals</a></li>
+          <li><a href="sneakers.html">Best Sellers</a></li>
+          <li><a href="sneakers.html">On Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="sellers page.html">Sell With Us</a></li>
+          <li><a href="press.html">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram" style="margin-right: 10px;"></i>Instagram</a></li>
+          <li><a href="#"><i class="fab fa-twitter" style="margin-right: 10px;"></i>Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook" style="margin-right: 10px;"></i>Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok" style="margin-right: 10px;"></i>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 All Around Sneakers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    function displayCheckout() {
+      const cart = getCart();
+      const orderItems = document.getElementById('orderItems');
+
+      if (cart.length === 0) {
+        orderItems.innerHTML = '<p style="color: #666; text-align: center;">Your cart is empty</p>';
+        updateOrderSummary(0);
+        return;
+      }
+
+      orderItems.innerHTML = cart.map(item => `
+        <div style="display: flex; gap: 15px; padding: 15px 0; border-bottom: 1px solid #eee;">
+          <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+          <div style="flex: 1;">
+            <p style="font-weight: 600; margin-bottom: 3px; font-size: 0.95rem;">${item.name}</p>
+            <p style="color: #666; font-size: 0.85rem; margin: 0;">Qty: ${item.quantity || 1}${item.size ? ` | Size: ${item.size}` : ''}</p>
+          </div>
+          <p style="font-weight: 600;">R${((item.price * (item.quantity || 1))).toFixed(2)}</p>
+        </div>
+      `).join('');
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+      updateOrderSummary(subtotal);
+    }
+
+    function updateOrderSummary(subtotal) {
+      const shipping = subtotal > 2000 ? 0 : 150;
+      const tax = subtotal * 0.15;
+      const total = subtotal + shipping + tax;
+
+      document.getElementById('orderSubtotal').textContent = 'R' + subtotal.toFixed(2);
+      document.getElementById('orderShipping').textContent = shipping === 0 ? 'FREE' : 'R' + shipping.toFixed(2);
+      document.getElementById('orderTax').textContent = 'R' + tax.toFixed(2);
+      document.getElementById('orderTotal').textContent = 'R' + total.toFixed(2);
+    }
+
+    function generateOrderNumber() {
+      return 'ORD-' + Date.now().toString().slice(-6);
+    }
+
+    function confirmOrder() {
+      const email = document.getElementById('email').value.trim();
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const province = document.getElementById('province').value.trim();
+      const postalCode = document.getElementById('postalCode').value.trim();
+
+      if (!email || !firstName || !lastName || !address || !city || !province || !postalCode) {
+        showToast('Please fill in all required fields');
+        return;
+      }
+
+      const cart = getCart();
+      if (cart.length === 0) {
+        showToast('Your cart is empty');
+        return;
+      }
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+      const shipping = subtotal > 2000 ? 0 : 150;
+      const tax = subtotal * 0.15;
+      const total = subtotal + shipping + tax;
+      const orderNumber = generateOrderNumber();
+      const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+      const receiptContent = document.getElementById('receiptContent');
+      receiptContent.innerHTML = `
+        <div style="text-align: center; margin-bottom: 20px;">
+          <p style="color: #666; margin-bottom: 5px;">Order Number</p>
+          <p style="font-size: 1.3rem; font-weight: 700; color: #ff6b00;">${orderNumber}</p>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <p style="color: #666; margin-bottom: 5px;">Ship to</p>
+          <p style="font-weight: 500;">${firstName} ${lastName}</p>
+          <p style="color: #666; font-size: 0.9rem;">${address}, ${city}, ${province} ${postalCode}</p>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <p style="color: #666; margin-bottom: 5px;">Payment Method</p>
+          <p style="font-weight: 500;">${paymentMethod === 'card' ? 'Credit / Debit Card' : paymentMethod === 'eft' ? 'Bank Transfer (EFT)' : 'Cash on Delivery'}</p>
+        </div>
+        <div style="border-top: 1px solid #ddd; padding-top: 15px; margin-top: 15px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span style="color: #666;">Subtotal</span>
+            <span>R${subtotal.toFixed(2)}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span style="color: #666;">Shipping</span>
+            <span>${shipping === 0 ? 'FREE' : 'R' + shipping.toFixed(2)}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span style="color: #666;">Tax</span>
+            <span>R${tax.toFixed(2)}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid #ddd; font-weight: 700; font-size: 1.1rem;">
+            <span>Total</span>
+            <span style="color: #ff6b00;">R${total.toFixed(2)}</span>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('receiptModal').style.display = 'flex';
+      clearCart();
+    }
+
+    function printReceipt() {
+      window.print();
+    }
+
+    window.onload = displayCheckout;
+  </script>
+</body>
+</html>

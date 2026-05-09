@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Around Sneakers | Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-image: url('AllAroundSneakerShop.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 120px 50px 50px 50px;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .headline {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .headline h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+
+    .headline h1 span {
+      color: #ff6b00;
+    }
+
+    .headline::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b00, #ff8c42);
+      margin: 20px auto 0;
+      border-radius: 2px;
+    }
+
+    .category-nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 15px 30px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0 5px;
+    }
+
+    .category-btn:hover {
+      background: #ff6b00;
+      border-color: #ff6b00;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,107,0,0.3);
+    }
+
+    .category-btn.active {
+      background: #ff6b00;
+      border-color: #ff6b00;
+      color: white;
+    }
+
+    .sneaker {
+      background-color: white;
+      color: black;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+
+    .sneaker:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .sneaker h4 {
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .sneaker p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ff6b00;
+      margin-bottom: 15px;
+    }
+
+    .sneaker img.showcase {
+      max-width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .btn-success {
+      background-color: #ff6b00;
+      border-color: #ff6b00;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .btn-success:hover {
+      background-color: #e55a00;
+      border-color: #e55A00;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255,107,0,0.3);
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-4 {
+      margin-bottom: 1.5rem;
+    }
+
+    .mt-4 {
+      margin-top: 1.5rem;
+    }
+
+    /* Responsive grid layout */
+    .sneakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .overlay {
+        padding: 20px;
+      }
+      
+      .sneakers-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .sneaker {
+        padding: 15px;
+      }
+
+      .category-nav {
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 10px;
+      }
+
+      .sneakers-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .headline h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar-custom" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px;">
+      <!-- Left side - Brand -->
+      <div style="flex: 1;">
+        <a href="index.html" class="navbar-brand" style="font-size: 1.5rem; font-weight: 800;">All<span style="color: #ff6b00;">Around</span></a>
+      </div>
+      
+      <!-- Middle - Navigation Tabs -->
+      <div style="flex: 2; display: flex; justify-content: center;">
+        <ul class="nav-links" style="display: flex; gap: 30px; align-items: center; margin: 0; padding: 0; list-style: none;">
+                    <li><a href="sneakers.html" style="color: #ff6b00; font-weight: 700; text-decoration: none; transition: all 0.3s;">Shop</a></li>
+          <li><a href="about.html" style="color: white; text-decoration: none; font-weight: 600; transition: all 0.3s;">About</a></li>
+          <li><a href="contact.html" style="color: white; text-decoration: none; font-weight: 600; transition: all 0.3s;">Contact</a></li>
+        </ul>
+      </div>
+      
+      <!-- Right side - Profile, Cart, Logout -->
+      <div class="nav-actions" style="flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 15px;">
+        <button class="icon-btn" onclick="showUserMenu()" title="Account" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; color: white;">
+          <i class="fas fa-user"></i>
+        </button>
+        <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; color: white; position: relative;">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="badge cart-badge" style="display: none; background: #ff6b00; color: white; font-size: 0.7rem; position: absolute; top: -5px; right: -5px; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;">0</span>
+        </button>
+        <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="background: rgba(220,53,69,0.1); border: 1px solid rgba(220,53,69,0.2); padding: 10px; border-radius: 8px; color: #dc3545;">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="overlay">
+    <div class="container">
+
+      <!-- Premium Sneaker Headline -->
+      <div class="headline">
+        <h1>Premium <span>Sneakers</span></h1>
+      </div>
+
+      <!-- Category Navigation -->
+      <div class="category-nav">
+        <button class="category-btn active" onclick="showCategory('all')">All</button>
+        <button class="category-btn" onclick="showCategory('lifestyle')">Lifestyle</button>
+        <button class="category-btn" onclick="showCategory('basketball')">Basketball</button>
+        <button class="category-btn" onclick="showCategory('casual')">Casual</button>
+        <button class="category-btn" onclick="showCategory('skate')">Skate</button>
+      </div>
+
+      <!-- All Sneakers -->
+      <div id="all-sneakers" class="sneakers-grid">
+        <div class="sneaker">
+          <h4>Air Jordan 1</h4>
+          <p>R1000</p>
+          <img src="Air Jordan 1.jpg" alt="Air Jordan 1" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Air Jordan 1', 1000, 'Air Jordan 1.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Yeezy Boost 350</h4>
+          <p>R800</p>
+          <img src="Yeezy Boost 350.jpg" alt="Yeezy Boost 350" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Yeezy Boost 350', 800, 'Yeezy Boost 350.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Nike Air Force 1</h4>
+          <p>R900</p>
+          <img src="airfoce.jpg" alt="Nike Air Force 1" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Nike Air Force 1', 900, 'airfoce.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Adidas Superstar</h4>
+          <p>R500</p>
+          <img src="Adidas Superstar.jpg" alt="Adidas Superstar" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Adidas Superstar', 500, 'Adidas Superstar.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Puma Suede Classic</h4>
+          <p>R650</p>
+          <img src="Puma Suede Classic.jpg" alt="Puma Suede Classic" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Puma Suede Classic', 650, 'Puma Suede Classic.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Converse Chuck Taylor All Star</h4>
+          <p>R850</p>
+          <img src="Converse Chuck Taylor All Star.jpg" alt="Converse Chuck Taylor All Star" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Converse Chuck Taylor All Star', 850, 'Converse Chuck Taylor All Star.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>New Balance 550</h4>
+          <p>R900</p>
+          <img src="New Balance 550.jpg" alt="New Balance 550" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('New Balance 550', 900, 'New Balance 550.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Vans Old Skool</h4>
+          <p>R700</p>
+          <img src="Vans Old Skool.jpg" alt="Vans Old Skool" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Vans Old Skool', 700, 'Vans Old Skool.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Reebok Club C 85</h4>
+          <p>R650</p>
+          <img src="Reebok Club C 85.jpg" alt="Reebok Club C 85" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Reebok Club C 85', 650, 'Reebok Club C 85.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Air Jordan 4</h4>
+          <p>R1000</p>
+          <img src="Air Jordan 4.jpg" alt="Air Jordan 4" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Air Jordan 4', 1000, 'Air Jordan 4.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Lifestyle Sneakers -->
+      <div id="lifestyle-sneakers" class="sneakers-grid" style="display: none;">
+        <div class="sneaker">
+          <h4>Nike Dunk Low Panda</h4>
+          <p>R1299</p>
+          <img src="Nike Dunk Low Panda.jpg" alt="Nike Dunk Low Panda" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Nike Dunk Low Panda', 1299, 'Nike Dunk Low Panda.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Air Max 90</h4>
+          <p>R2499</p>
+          <img src="Air Jordan 1.jpg" alt="Air Max 90" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Air Max 90', 2499, 'Air Jordan 1.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Adidas Samba OG</h4>
+          <p>R1899</p>
+          <img src="Adidas Superstar.jpg" alt="Adidas Samba OG" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Adidas Samba OG', 1899, 'Adidas Superstar.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Yeezy Boost 350 V2</h4>
+          <p>R3299</p>
+          <img src="Yeezy Boost 350.jpg" alt="Yeezy Boost 350 V2" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Yeezy Boost 350 V2', 3299, 'Yeezy Boost 350.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Adidas Forum 84 Low</h4>
+          <p>R1599</p>
+          <img src="Adidas Superstar.jpg" alt="Adidas Forum 84 Low" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Adidas Forum 84 Low', 1599, 'Adidas Superstar.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Basketball Sneakers -->
+      <div id="basketball-sneakers" class="sneakers-grid" style="display: none;">
+        <div class="sneaker">
+          <h4>Nike Zoom Freak 4</h4>
+          <p>R2899</p>
+          <img src="Air Jordan 1.jpg" alt="Nike Zoom Freak 4" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Nike Zoom Freak 4', 2899, 'Air Jordan 1.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Air Jordan 1 Retro High OG</h4>
+          <p>R2899</p>
+          <img src="Air Jordan 4.jpg" alt="Air Jordan 1 Retro High OG" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Air Jordan 1 Retro High OG', 2899, 'Air Jordan 4.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Air Jordan 4</h4>
+          <p>R2899</p>
+          <img src="Yeezy Boost 350.jpg" alt="Air Jordan 4" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Air Jordan 4', 2899, 'Yeezy Boost 350.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Casual Sneakers -->
+      <div id="casual-sneakers" class="sneakers-grid" style="display: none;">
+        <div class="sneaker">
+          <h4>Adidas Superstar</h4>
+          <p>R500</p>
+          <img src="Adidas Superstar.jpg" alt="Adidas Superstar" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Adidas Superstar', 500, 'Adidas Superstar.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Converse Chuck Taylor All Star</h4>
+          <p>R850</p>
+          <img src="Converse Chuck Taylor All Star.jpg" alt="Converse Chuck Taylor All Star" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Converse Chuck Taylor All Star', 850, 'Converse Chuck Taylor All Star.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>New Balance 550</h4>
+          <p>R900</p>
+          <img src="New Balance 550.jpg" alt="New Balance 550" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('New Balance 550', 900, 'New Balance 550.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="sneaker">
+          <h4>Vans Old Skool</h4>
+          <p>R700</p>
+          <img src="Vans Old Skool.jpg" alt="Vans Old Skool" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Vans Old Skool', 700, 'Vans Old Skool.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Skate Sneakers -->
+      <div id="skate-sneakers" class="sneakers-grid" style="display: none;">
+        <div class="sneaker">
+          <h4>Vans Old Skool</h4>
+          <p>R700</p>
+          <img src="Vans Old Skool.jpg" alt="Vans Old Skool" class="showcase" />
+          <button class="btn btn-success" onclick="addToCart('Vans Old Skool', 700, 'Vans Old Skool.jpg')">Add to Cart</button>
+        </div>
+      </div>
+
+          </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="sneakers.html">All Sneakers</a></li>
+          <li><a href="sneakers.html">New Arrivals</a></li>
+          <li><a href="sneakers.html">Best Sellers</a></li>
+          <li><a href="sneakers.html">On Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="sellers page.html">Sell With Us</a></li>
+          <li><a href="press.html">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram" style="margin-right: 10px;"></i>Instagram</a></li>
+          <li><a href="#"><i class="fab fa-twitter" style="margin-right: 10px;"></i>Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook" style="margin-right: 10px;"></i>Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok" style="margin-right: 10px;"></i>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 All Around Sneakers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Cart Functionality -->
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      updateCartBadge();
+    });
+
+    function showCategory(category) {
+      // Hide all category sections
+      document.getElementById('all-sneakers').style.display = 'none';
+      document.getElementById('lifestyle-sneakers').style.display = 'none';
+      document.getElementById('basketball-sneakers').style.display = 'none';
+      document.getElementById('casual-sneakers').style.display = 'none';
+      document.getElementById('skate-sneakers').style.display = 'none';
+
+      // Show selected category
+      document.getElementById(category + '-sneakers').style.display = 'grid';
+
+      // Update active button
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Find the clicked button and add active class
+      const clickedBtn = event.target;
+      if (clickedBtn) {
+        clickedBtn.classList.add('active');
+      }
+    }
+
+    function addToCart(name, price, image) {
+      const item = { name, price, image, quantity: 1 };
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push(item);
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert(`${name} added to cart!`);
+      updateCartBadge();
+    }
+
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      const badges = document.querySelectorAll('.cart-badge');
+      badges.forEach(badge => {
+        badge.textContent = totalItems;
+        badge.style.display = totalItems > 0 ? 'block' : 'none';
+      });
+    }
+
+    function showUserMenu() {
+      // Check if auth is available
+      if (typeof auth !== 'undefined' && auth.getCurrentUser) {
+        const user = auth.getCurrentUser();
+        if (!user) {
+          window.location.href = 'index.html';
+          return;
+        }
+        
+        const options = [
+          `Logged in as: ${user.fullName || user.username}`,
+          '---',
+          'Profile',
+          'Settings',
+          'Logout'
+        ];
+        
+        const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+        
+        switch(choice) {
+          case '4':
+          case 'logout':
+          case 'Logout':
+            confirmLogout();
+            break;
+          case '1':
+          case 'profile':
+          case 'Profile':
+            window.location.href = 'profile.html';
+            break;
+          case '2':
+          case 'settings':
+          case 'Settings':
+            window.location.href = 'settings.html';
+            break;
+        }
+      } else {
+        // Fallback method
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (!user) {
+          window.location.href = 'index.html';
+          return;
+        }
+        
+        const options = [
+          `Logged in as: ${user.fullName || user.username}`,
+          '---',
+          'Profile',
+          'Settings',
+          'Logout'
+        ];
+        
+        const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+        
+        switch(choice) {
+          case '4':
+          case 'logout':
+          case 'Logout':
+            confirmLogout();
+            break;
+          case '1':
+          case 'profile':
+          case 'Profile':
+            window.location.href = 'profile.html';
+            break;
+          case '2':
+          case 'settings':
+          case 'Settings':
+            window.location.href = 'settings.html';
+            break;
+        }
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        // Check if auth is available
+        if (typeof auth !== 'undefined' && auth.logout) {
+          auth.logout();
+        } else {
+          // Fallback logout method
+          localStorage.removeItem('currentUser');
+          window.location.href = 'index.html';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-page {
+      min-height: 100vh;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+      padding: 40px 30px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 15px;
+    }
+    
+    .hero-section p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .content-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+    
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+    }
+    
+    .admin-card {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+    
+    .admin-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .admin-card h3 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .admin-card h3 i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .stat-item {
+      background: rgba(255,107,0,0.1);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+    
+    .stat-label {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .table-container {
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+    }
+    
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .custom-table th {
+      background: rgba(255,107,0,0.1);
+      color: var(--accent);
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    .custom-table td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: var(--text-light);
+    }
+    
+    .custom-table tr:hover {
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .status-badge {
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .status-approved {
+      background: rgba(40, 167, 69, 0.2);
+      color: var(--success);
+    }
+    
+    .status-pending {
+      background: rgba(255, 193, 7, 0.2);
+      color: var(--accent);
+    }
+    
+    .status-customer {
+      background: rgba(40, 167, 69, 0.2);
+      color: var(--success);
+    }
+    
+    .status-seller {
+      background: rgba(255, 193, 7, 0.2);
+      color: var(--accent);
+    }
+    
+    .btn-action {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin: 2px;
+      transition: all 0.3s;
+    }
+    
+    .btn-approve {
+      background: var(--success);
+      color: var(--text-light);
+    }
+    
+    .btn-reject {
+      background: var(--danger);
+      color: var(--text-light);
+    }
+    
+    .btn-view {
+      background: var(--accent);
+      color: var(--text-light);
+    }
+    
+    .btn-action:hover {
+      opacity: 0.8;
+      transform: translateY(-1px);
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: var(--gray);
+    }
+    
+    .alert {
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .alert-success {
+      background: rgba(40, 167, 69, 0.2);
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+  </style>
+</head>
+<body class="admin-page" style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <ul class="nav-links">
+      <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="goToSearch()"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1>Admin Dashboard</h1>
+    <p>Manage users, products, and monitor platform activity</p>
+  </section>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <!-- Statistics Overview -->
+    <div class="admin-card">
+      <h3><i class="fas fa-chart-line"></i> Platform Statistics</h3>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" id="totalUsers">0</div>
+          <div class="stat-label">Total Users</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="totalSellers">0</div>
+          <div class="stat-label">Sellers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="totalCustomers">0</div>
+          <div class="stat-label">Customers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="totalProducts">0</div>
+          <div class="stat-label">Products</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="pendingProducts">0</div>
+          <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="totalOrders">0</div>
+          <div class="stat-label">Orders</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-grid">
+      <!-- User Management -->
+      <div class="admin-card">
+        <h3><i class="fas fa-users"></i> User Management</h3>
+        <div class="table-container">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Joined</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="userTableBody">
+              <!-- Users will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Seller Listings -->
+      <div class="admin-card">
+        <h3><i class="fas fa-store"></i> Seller Listings</h3>
+        <div class="table-container">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Seller</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productTableBody">
+              <!-- Products will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Customer Orders -->
+      <div class="admin-card">
+        <h3><i class="fas fa-shopping-cart"></i> Customer Orders</h3>
+        <div class="table-container">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="orderTableBody">
+              <!-- Orders will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Sales Analytics -->
+      <div class="admin-card">
+        <h3><i class="fas fa-chart-bar"></i> Sales Analytics</h3>
+        <div id="salesAnalytics">
+          <div class="stat-item">
+            <div class="stat-number" id="totalRevenue">R0</div>
+            <div class="stat-label">Total Revenue</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="avgOrderValue">R0</div>
+            <div class="stat-label">Avg Order Value</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="topSeller">None</div>
+            <div class="stat-label">Top Seller</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Check authentication
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!auth.isLoggedIn()) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const user = auth.getCurrentUser();
+      if (user.role !== 'admin') {
+        alert('Access denied. Admin privileges required.');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      loadAdminData();
+    });
+
+    function loadAdminData() {
+      loadStatistics();
+      loadUsers();
+      loadProducts();
+      loadOrders();
+      loadAnalytics();
+    }
+
+    function loadStatistics() {
+      const users = auth.users;
+      const sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      
+      const totalUsers = users.length;
+      const totalSellers = users.filter(u => u.role === 'seller' || u.role === 'admin').length;
+      const totalCustomers = users.filter(u => u.role === 'customer').length;
+      const totalProducts = sellerProducts.length;
+      const pendingProducts = sellerProducts.filter(p => p.status === 'pending').length;
+      const totalOrders = orders.length;
+      
+      document.getElementById('totalUsers').textContent = totalUsers;
+      document.getElementById('totalSellers').textContent = totalSellers;
+      document.getElementById('totalCustomers').textContent = totalCustomers;
+      document.getElementById('totalProducts').textContent = totalProducts;
+      document.getElementById('pendingProducts').textContent = pendingProducts;
+      document.getElementById('totalOrders').textContent = totalOrders;
+    }
+
+    function loadUsers() {
+      const users = auth.users;
+      const userTableBody = document.getElementById('userTableBody');
+      
+      if (users.length === 0) {
+        userTableBody.innerHTML = '<tr><td colspan="4" class="empty-state">No users found</td></tr>';
+        return;
+      }
+      
+      userTableBody.innerHTML = users.map(user => `
+        <tr>
+          <td>
+            <div>
+              <strong>${user.fullName}</strong><br>
+              <small>${user.email}</small>
+            </div>
+          </td>
+          <td>
+            <span class="status-badge status-${user.role}">${user.role}</span>
+          </td>
+          <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+          <td>
+            <button class="btn-action btn-view" onclick="viewUser('${user.id}')">View</button>
+            ${user.role === 'customer' ? `<button class="btn-action btn-view" onclick="viewOrders('${user.id}')">Orders</button>` : ''}
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function loadProducts() {
+      const sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+      const productTableBody = document.getElementById('productTableBody');
+      
+      if (sellerProducts.length === 0) {
+        productTableBody.innerHTML = '<tr><td colspan="5" class="empty-state">No products found</td></tr>';
+        return;
+      }
+      
+      productTableBody.innerHTML = sellerProducts.map(product => `
+        <tr>
+          <td>
+            <div>
+              <strong>${product.name}</strong><br>
+              <small>${product.brand} - ${product.size}</small>
+            </div>
+          </td>
+          <td>${product.seller}</td>
+          <td>R${product.price.toFixed(2)}</td>
+          <td>
+            <span class="status-badge status-${product.status}">${product.status}</span>
+          </td>
+          <td>
+            ${product.status === 'pending' ? 
+              `<button class="btn-action btn-approve" onclick="approveProduct(${product.id})">Approve</button>
+               <button class="btn-action btn-reject" onclick="rejectProduct(${product.id})">Reject</button>` :
+              `<button class="btn-action btn-view" onclick="viewProduct(${product.id})">View</button>`
+            }
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function loadOrders() {
+      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      const orderTableBody = document.getElementById('orderTableBody');
+      
+      if (orders.length === 0) {
+        orderTableBody.innerHTML = '<tr><td colspan="5" class="empty-state">No orders found</td></tr>';
+        return;
+      }
+      
+      orderTableBody.innerHTML = orders.map(order => `
+        <tr>
+          <td>${order.customerName}</td>
+          <td>${order.productName}</td>
+          <td>R${order.total.toFixed(2)}</td>
+          <td>${new Date(order.orderDate).toLocaleDateString()}</td>
+          <td>
+            <span class="status-badge status-approved">${order.status || 'Completed'}</span>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function loadAnalytics() {
+      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      const sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+      
+      const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
+      const avgOrderValue = orders.length > 0 ? totalRevenue / orders.length : 0;
+      
+      // Find top seller
+      const sellerCounts = {};
+      sellerProducts.forEach(product => {
+        sellerCounts[product.seller] = (sellerCounts[product.seller] || 0) + 1;
+      });
+      
+      const topSeller = Object.keys(sellerCounts).reduce((a, b) => 
+        sellerCounts[a] > sellerCounts[b] ? a : b, 'None');
+      
+      document.getElementById('totalRevenue').textContent = `R${totalRevenue.toFixed(2)}`;
+      document.getElementById('avgOrderValue').textContent = `R${avgOrderValue.toFixed(2)}`;
+      document.getElementById('topSeller').textContent = topSeller;
+    }
+
+    function approveProduct(productId) {
+      const sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+      const product = sellerProducts.find(p => p.id === productId);
+      
+      if (product) {
+        product.status = 'approved';
+        localStorage.setItem('sellerProducts', JSON.stringify(sellerProducts));
+        showAlert('Product approved successfully!', 'success');
+        loadProducts();
+        loadStatistics();
+      }
+    }
+
+    function rejectProduct(productId) {
+      if (confirm('Are you sure you want to reject this product?')) {
+        let sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+        sellerProducts = sellerProducts.filter(p => p.id !== productId);
+        localStorage.setItem('sellerProducts', JSON.stringify(sellerProducts));
+        showAlert('Product rejected and removed!', 'success');
+        loadProducts();
+        loadStatistics();
+      }
+    }
+
+    function viewUser(userId) {
+      const users = auth.users;
+      const user = users.find(u => u.id === userId);
+      if (user) {
+        alert(`User Details:\n\nName: ${user.fullName}\nEmail: ${user.email}\nRole: ${user.role}\nJoined: ${new Date(user.createdAt).toLocaleDateString()}`);
+      }
+    }
+
+    function viewOrders(userId) {
+      const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+      const userOrders = orders.filter(o => o.customerId === userId);
+      
+      if (userOrders.length === 0) {
+        alert('No orders found for this customer.');
+      } else {
+        const orderList = userOrders.map((order, index) => 
+          `${index + 1}. ${order.productName} - R${order.total.toFixed(2)} (${new Date(order.orderDate).toLocaleDateString()})`
+        ).join('\n');
+        alert(`Customer Orders:\n\n${orderList}`);
+      }
+    }
+
+    function viewProduct(productId) {
+      const sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+      const product = sellerProducts.find(p => p.id === productId);
+      if (product) {
+        alert(`Product Details:\n\nName: ${product.name}\nBrand: ${product.brand}\nSize: ${product.size}\nPrice: R${product.price}\nSeller: ${product.seller}\nStatus: ${product.status}`);
+      }
+    }
+
+    function showAlert(message, type) {
+      const alertDiv = document.createElement('div');
+      alertDiv.className = `alert alert-${type}`;
+      alertDiv.textContent = message;
+      
+      const container = document.querySelector('.content-container');
+      container.insertBefore(alertDiv, container.firstChild);
+      
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 5000);
+    }
+
+    function goToSearch() {
+      const query = document.getElementById('searchInput').value;
+      if (query) {
+        window.location.href = 'sneakers.html?search=' + encodeURIComponent(query);
+      } else {
+        window.location.href = 'sneakers.html';
+      }
+    }
+
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          auth.logout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          window.location.href = 'settings.html';
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+
+    // Search on Enter key
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') goToSearch();
+    });
+  </script>
+</body>
+</html>

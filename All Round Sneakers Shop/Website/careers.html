@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .careers-page {
+      min-height: 100vh;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+      padding: 60px 30px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+    
+    .hero-section p {
+      color: var(--gray);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 30px;
+    }
+    
+    .careers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    
+    .career-card {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .career-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .career-card h3 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .career-card h3 i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .career-card p {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .career-card ul {
+      color: var(--gray);
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+    
+    .career-card ul li {
+      margin-bottom: 8px;
+    }
+    
+    .apply-btn {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .apply-btn:hover {
+      background: #ff8c42;
+      color: var(--text-light);
+      transform: translateY(-2px);
+    }
+    
+    .benefits-section {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 60px;
+    }
+    
+    .benefits-section h2 {
+      color: var(--text-light);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .benefits-section h2 i {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    
+    .benefit-item {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .benefit-item i {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+    
+    .benefit-item h4 {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .benefit-item p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+    
+    .culture-section {
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+      border-radius: 15px;
+      padding: 40px;
+      margin-bottom: 60px;
+    }
+    
+    .culture-section h2 {
+      color: var(--text-light);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .culture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .culture-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    .culture-item i {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+    
+    .culture-item h4 {
+      color: var(--text-light);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .culture-item p {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+      
+      .careers-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .culture-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="careers-page" style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <ul class="nav-links">
+      <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="goToSearch()"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1>Join Our <span style="color: #ff6b00;">Team</span></h1>
+    <p>Be part of South Africa's leading sneaker marketplace and help us connect sneakerheads with authentic kicks</p>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+      <div style="text-align: center;">
+        <h3 style="color: #ff6b00; font-size: 2rem; font-weight: 700;">50+</h3>
+        <p style="color: #666;">Team Members</p>
+      </div>
+      <div style="text-align: center;">
+        <h3 style="color: #ff6b00; font-size: 2rem; font-weight: 700;">2020</h3>
+        <p style="color: #666;">Founded</p>
+      </div>
+      <div style="text-align: center;">
+        <h3 style="color: #ff6b00; font-size: 2rem; font-weight: 700;">Growth</h3>
+        <p style="color: #666;">Fast Growing</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <!-- Open Positions -->
+    <div class="careers-grid">
+      <!-- Customer Service Representative -->
+      <div class="career-card">
+        <h3><i class="fas fa-headset"></i> Customer Service Representative</h3>
+        <p>Join our customer service team to help sneaker enthusiasts with their inquiries and ensure excellent shopping experiences.</p>
+        <ul>
+          <li>Respond to customer inquiries via email, phone, and chat</li>
+          <li>Assist with order tracking and issue resolution</li>
+          <li>Provide product information and recommendations</li>
+          <li>Maintain high customer satisfaction ratings</li>
+        </ul>
+        <p><strong>Requirements:</strong> Excellent communication skills, passion for sneakers, 1+ years customer service experience</p>
+        <p><strong>Location:</strong> Johannesburg, Gauteng</p>
+        <p><strong>Type:</strong> Full-time</p>
+        <button class="apply-btn" onclick="applyForPosition('Customer Service Representative')">Apply Now</button>
+      </div>
+
+      <!-- Marketing Specialist -->
+      <div class="career-card">
+        <h3><i class="fas fa-bullhorn"></i> Marketing Specialist</h3>
+        <p>Help us grow our brand and reach more sneaker lovers through creative marketing campaigns and social media engagement.</p>
+        <ul>
+          <li>Develop and execute marketing strategies</li>
+          <li>Manage social media accounts and content creation</li>
+          <li>Analyze campaign performance and optimize results</li>
+          <li>Collaborate with influencers and partners</li>
+        </ul>
+        <p><strong>Requirements:</strong> Marketing degree, 2+ years experience, social media expertise, creative mindset</p>
+        <p><strong>Location:</strong> Johannesburg, Gauteng</p>
+        <p><strong>Type:</strong> Full-time</p>
+        <button class="apply-btn" onclick="applyForPosition('Marketing Specialist')">Apply Now</button>
+      </div>
+
+      <!-- Operations Manager -->
+      <div class="career-card">
+        <h3><i class="fas fa-cogs"></i> Operations Manager</h3>
+        <p>Oversee daily operations and ensure smooth processes from inventory management to order fulfillment and logistics.</p>
+        <ul>
+          <li>Manage inventory and warehouse operations</li>
+          <li>Optimize order fulfillment processes</li>
+          <li>Coordinate with shipping partners</li>
+          <li>Implement operational improvements</li>
+        </ul>
+        <p><strong>Requirements:</strong> Operations experience, leadership skills, analytical mindset, 3+ years management experience</p>
+        <p><strong>Location:</strong> Johannesburg, Gauteng</p>
+        <p><strong>Type:</strong> Full-time</p>
+        <button class="apply-btn" onclick="applyForPosition('Operations Manager')">Apply Now</button>
+      </div>
+
+      <!-- Content Creator -->
+      <div class="career-card">
+        <h3><i class="fas fa-video"></i> Content Creator</h3>
+        <p>Create engaging content about sneakers, from unboxing videos to styling guides and brand spotlights.</p>
+        <ul>
+          <li>Produce video content for social media and website</li>
+          <li>Write blog posts and product descriptions</li>
+          <li>Photograph sneakers for marketing materials</li>
+          <li>Stay updated on sneaker trends and releases</li>
+        </ul>
+        <p><strong>Requirements:</strong> Content creation experience, video editing skills, photography knowledge, sneaker passion</p>
+        <p><strong>Location:</strong> Remote/Johannesburg</p>
+        <p><strong>Type:</strong> Full-time</p>
+        <button class="apply-btn" onclick="applyForPosition('Content Creator')">Apply Now</button>
+      </div>
+
+      <!-- Sales Associate -->
+      <div class="career-card">
+        <h3><i class="fas fa-shopping-cart"></i> Sales Associate</h3>
+        <p>Help customers find their perfect sneakers and drive sales through excellent product knowledge and customer service.</p>
+        <ul>
+          <li>Assist customers in-store and online</li>
+          <li>Provide product recommendations and styling advice</li>
+          <li>Process sales and handle customer transactions</li>
+          <li>Maintain store presentation and inventory</li>
+        </ul>
+        <p><strong>Requirements:</strong> Retail experience, customer service skills, product knowledge, flexible availability</p>
+        <p><strong>Location:</strong> Johannesburg, Gauteng</p>
+        <p><strong>Type:</strong> Full-time/Part-time</p>
+        <button class="apply-btn" onclick="applyForPosition('Sales Associate')">Apply Now</button>
+      </div>
+
+      <!-- Web Developer -->
+      <div class="career-card">
+        <h3><i class="fas fa-code"></i> Web Developer</h3>
+        <p>Help us build and maintain our e-commerce platform to provide the best online sneaker shopping experience.</p>
+        <ul>
+          <li>Develop and maintain website features</li>
+          <li>Optimize site performance and user experience</li>
+          <li>Implement new functionality and integrations</li>
+          <li>Troubleshoot technical issues</li>
+        </ul>
+        <p><strong>Requirements:</strong> Web development experience, HTML/CSS/JavaScript, e-commerce knowledge, problem-solving skills</p>
+        <p><strong>Location:</strong> Remote/Johannesburg</p>
+        <p><strong>Type:</strong> Full-time</p>
+        <button class="apply-btn" onclick="applyForPosition('Web Developer')">Apply Now</button>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="benefits-section">
+      <h2><i class="fas fa-star"></i> Why Work With Us</h2>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <i class="fas fa-shoe-prints"></i>
+          <h4>Sneaker Perks</h4>
+          <p>Employee discounts on all sneakers and early access to new releases</p>
+        </div>
+        
+        <div class="benefit-item">
+          <i class="fas fa-heartbeat"></i>
+          <h4>Health Benefits</h4>
+          <p>Comprehensive medical aid and wellness programs for all employees</p>
+        </div>
+        
+        <div class="benefit-item">
+          <i class="fas fa-graduation-cap"></i>
+          <h4>Growth Opportunities</h4>
+          <p>Professional development programs and career advancement paths</p>
+        </div>
+        
+        <div class="benefit-item">
+          <i class="fas fa-users"></i>
+          <h4>Great Culture</h4>
+          <p>Collaborative environment with passionate sneaker enthusiasts</p>
+        </div>
+        
+        <div class="benefit-item">
+          <i class="fas fa-clock"></i>
+          <h4>Flexible Work</h4>
+          <p>Flexible working hours and remote work options for certain roles</p>
+        </div>
+        
+        <div class="benefit-item">
+          <i class="fas fa-trophy"></i>
+          <h4>Performance Bonuses</h4>
+          <p>Competitive salary structure with performance-based bonuses</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Culture Section -->
+    <div class="culture-section">
+      <h2>Our Culture</h2>
+      <div class="culture-grid">
+        <div class="culture-item">
+          <i class="fas fa-fire"></i>
+          <h4>Passion-Driven</h4>
+          <p>We live and breathe sneakers. Our team's passion drives everything we do.</p>
+        </div>
+        
+        <div class="culture-item">
+          <i class="fas fa-handshake"></i>
+          <h4>Authentic</h4>
+          <p>We believe in authenticity, both in our products and in how we work together.</p>
+        </div>
+        
+        <div class="culture-item">
+          <i class="fas fa-rocket"></i>
+          <h4>Innovative</h4>
+          <p>We're always looking for new ways to improve and grow our business.</p>
+        </div>
+        
+        <div class="culture-item">
+          <i class="fas fa-users"></i>
+          <h4>Community-Focused</h4>
+          <p>We're building a community, not just selling sneakers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="sneakers.html">All Sneakers</a></li>
+          <li><a href="sneakers.html">New Arrivals</a></li>
+          <li><a href="sneakers.html">Best Sellers</a></li>
+          <li><a href="sneakers.html">On Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="sellers page.html">Sell With Us</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram" style="margin-right: 10px;"></i>Instagram</a></li>
+          <li><a href="#"><i class="fab fa-twitter" style="margin-right: 10px;"></i>Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook" style="margin-right: 10px;"></i>Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok" style="margin-right: 10px;"></i>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 All Around Sneakers. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Application Modal -->
+  <div id="applicationModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: white; border-radius: 20px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; color: #1a1a1a;">
+      <div style="padding: 30px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+          <h2 style="margin: 0; color: #1a1a1a;">Job Application</h2>
+          <button onclick="closeApplicationModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
+        </div>
+        
+        <form id="applicationForm" onsubmit="submitApplication(event)">
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Position Applied For</label>
+            <input type="text" id="appliedPosition" readonly style="width: 100%; padding: 12px; background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div>
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">First Name *</label>
+              <input type="text" id="firstName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Last Name *</label>
+              <input type="text" id="lastName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Email Address *</label>
+            <input type="email" id="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Phone Number *</label>
+            <input type="tel" id="phone" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Location *</label>
+            <input type="text" id="location" required placeholder="City, Province" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">LinkedIn Profile (Optional)</label>
+            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Years of Experience *</label>
+            <select id="experience" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+              <option value="">Select experience</option>
+              <option value="0-1">0-1 years</option>
+              <option value="1-2">1-2 years</option>
+              <option value="2-3">2-3 years</option>
+              <option value="3-5">3-5 years</option>
+              <option value="5+">5+ years</option>
+            </select>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Current/Most Recent Job Title *</label>
+            <input type="text" id="currentJob" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Why do you want to work at All Around Sneakers? *</label>
+            <textarea id="motivation" rows="4" required placeholder="Tell us why you're interested in this position and our company..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333; resize: vertical;"></textarea>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Relevant Skills & Experience *</label>
+            <textarea id="skills" rows="4" required placeholder="Describe your relevant skills and experience for this position..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333; resize: vertical;"></textarea>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Availability *</label>
+            <select id="availability" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+              <option value="">Select availability</option>
+              <option value="immediately">Immediately</option>
+              <option value="2-weeks">2 weeks notice</option>
+              <option value="1-month">1 month notice</option>
+              <option value="2-months">2 months notice</option>
+            </select>
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Salary Expectation (Monthly ZAR)</label>
+            <input type="text" id="salary" placeholder="e.g., 15000 - 20000" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; color: #333;">
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <label style="display: flex; align-items: center; cursor: pointer;">
+              <input type="checkbox" id="terms" required style="margin-right: 10px;">
+              <span style="color: #333;">I confirm that all information provided is accurate and complete *</span>
+            </label>
+          </div>
+          
+          <div style="display: flex; gap: 15px; margin-top: 25px;">
+            <button type="button" onclick="closeApplicationModal()" style="flex: 1; background: #f5f5f5; color: #333; border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer;">Cancel</button>
+            <button type="submit" style="flex: 1; background: #ff6b00; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: 600; cursor: pointer;">Submit Application</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: white; border-radius: 20px; max-width: 400px; width: 100%; padding: 40px; text-align: center; color: #1a1a1a;">
+      <div style="width: 80px; height: 80px; background: #28a745; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+        <i class="fas fa-check" style="font-size: 2.5rem; color: white;"></i>
+      </div>
+      <h2 style="margin-bottom: 10px;">Application Submitted!</h2>
+      <p style="color: #666; margin-bottom: 25px;">Thank you for your application. We'll review it and contact you within 3-5 business days.</p>
+      <button onclick="closeSuccessModal()" style="background: #ff6b00; color: white; border: none; padding: 12px 30px; border-radius: 30px; font-weight: 600; cursor: pointer;">Got it</button>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          confirmLogout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          window.location.href = 'settings.html';
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+
+    function applyForPosition(position) {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        alert('Please login to apply for positions');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // Show application modal with position pre-filled
+      document.getElementById('appliedPosition').value = position;
+      document.getElementById('applicationModal').style.display = 'flex';
+      
+      // Pre-fill user information if available
+      if (user.fullName) {
+        const nameParts = user.fullName.split(' ');
+        document.getElementById('firstName').value = nameParts[0] || '';
+        document.getElementById('lastName').value = nameParts.slice(1).join(' ') || '';
+      }
+      if (user.email) {
+        document.getElementById('email').value = user.email;
+      }
+    }
+
+    function closeApplicationModal() {
+      document.getElementById('applicationModal').style.display = 'none';
+      document.getElementById('applicationForm').reset();
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('successModal').style.display = 'none';
+    }
+
+    function submitApplication(event) {
+      event.preventDefault();
+      
+      const user = auth.getCurrentUser();
+      if (!user) {
+        alert('Please login to submit applications');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // Get form data
+      const formData = {
+        position: document.getElementById('appliedPosition').value,
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        location: document.getElementById('location').value,
+        linkedin: document.getElementById('linkedin').value,
+        experience: document.getElementById('experience').value,
+        currentJob: document.getElementById('currentJob').value,
+        motivation: document.getElementById('motivation').value,
+        skills: document.getElementById('skills').value,
+        availability: document.getElementById('availability').value,
+        salary: document.getElementById('salary').value,
+        applicant: user.fullName,
+        userEmail: user.email,
+        date: new Date().toISOString(),
+        status: 'pending'
+      };
+      
+      // Store application in localStorage
+      const applications = JSON.parse(localStorage.getItem('jobApplications') || '[]');
+      applications.push(formData);
+      localStorage.setItem('jobApplications', JSON.stringify(applications));
+      
+      // Close application modal and show success modal
+      closeApplicationModal();
+      document.getElementById('successModal').style.display = 'flex';
+      
+      console.log('Application submitted:', formData);
+    }
+
+    function goToSearch() {
+      const searchTerm = document.getElementById('searchInput').value.trim();
+      if (searchTerm) {
+        window.location.href = `sneakers.html?search=${encodeURIComponent(searchTerm)}`;
+      } else {
+        window.location.href = 'sneakers.html';
+      }
+    }
+
+    // Search on Enter key
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') goToSearch();
+    });
+
+    // Close modal on overlay click
+    document.getElementById('applicationModal')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeApplicationModal();
+      }
+    });
+
+    document.getElementById('successModal')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeSuccessModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if (document.getElementById('applicationModal').style.display === 'flex') {
+          closeApplicationModal();
+        }
+        if (document.getElementById('successModal').style.display === 'flex') {
+          closeSuccessModal();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Returns | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .returns-page {
+      min-height: 100vh;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+      padding: 40px 30px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 15px;
+    }
+    
+    .hero-section p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+    
+    .returns-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+    
+    .returns-card {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+    
+    .returns-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .returns-card h3 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .returns-card h3 i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background: var(--accent);
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    
+    .timeline-content {
+      background: rgba(255,107,0,0.1);
+      border-radius: 10px;
+      padding: 20px;
+      border-left: 3px solid var(--accent);
+      margin-left: 20px;
+    }
+    
+    .timeline-date {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .timeline-title {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .timeline-description {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    
+    .policy-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .policy-list li {
+      color: var(--gray);
+      margin-bottom: 15px;
+      padding-left: 25px;
+      position: relative;
+      line-height: 1.6;
+    }
+    
+    .policy-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    
+    .btn-primary-custom {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 15px 40px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .btn-primary-custom:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .contact-support {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .contact-support h3 {
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .contact-item i {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,107,0,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .contact-text {
+      color: var(--gray);
+    }
+    
+    @media (max-width: 768px) {
+      .returns-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-info {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body class="returns-page" style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <ul class="nav-links">
+      <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="goToSearch()"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1>Returns & Exchanges</h1>
+    <p>Easy returns and exchanges within 30 days. Your satisfaction is our priority.</p>
+  </section>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <div class="returns-grid">
+      <!-- Return Policy -->
+      <div class="returns-card">
+        <h3><i class="fas fa-undo"></i> Return Policy</h3>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Day 1-14</div>
+            <div class="timeline-content">
+              <div class="timeline-title">30-Day Return Window</div>
+              <div class="timeline-description">
+                You have 30 days from the delivery date to return your sneakers for a full refund. Items must be in original condition with tags attached.
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-date">Day 15-30</div>
+            <div class="timeline-content">
+              <div class="timeline-title">Restocking Fee (15%)</div>
+              <div class="timeline-description">
+                Returns between days 15-30 may incur a 15% restocking fee to cover processing costs.
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-date">After Day 30</div>
+            <div class="timeline-content">
+              <div class="timeline-title">No Returns Accepted</div>
+              <div class="timeline-description">
+                Unfortunately, we cannot accept returns after 30 days from delivery date.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exchange Policy -->
+      <div class="returns-card">
+        <h3><i class="fas fa-exchange-alt"></i> Exchange Policy</h3>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Within 7 Days</div>
+            <div class="timeline-content">
+              <div class="timeline-title">Size Exchanges</div>
+              <div class="timeline-description">
+                Exchange for a different size within 7 days of delivery. Subject to availability.
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-date">Within 14 Days</div>
+            <div class="timeline-content">
+              <div class="timeline-title">Style Exchanges</div>
+              <div class="timeline-description">
+                Exchange for a different style within 14 days. Price difference may apply.
+              </div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-date">After 14 Days</div>
+            <div class="timeline-content">
+              <div class="timeline-title">No Exchanges</div>
+              <div class="timeline-description">
+                Exchanges not accepted after 14 days from delivery date.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Condition Requirements -->
+      <div class="returns-card">
+        <h3><i class="fas fa-shield-alt"></i> Condition Requirements</h3>
+        
+        <ul class="policy-list">
+          <li>Sneakers must be unworn and in original condition</li>
+          <li>Original box and packaging must be included</li>
+          <li>All tags must be attached and undamaged</li>
+          <li>No signs of wear, damage, or alteration</li>
+          <li>Proof of purchase required (receipt or order confirmation)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contact Support -->
+    <div class="contact-support">
+      <h3>Need Help with Returns?</h3>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div class="contact-text">
+            <strong>Email:</strong><br>
+            support@allaroundsneakers.co.za
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <div class="contact-text">
+            <strong>Phone:</strong><br>
+            +27 12 345 6789
+          </div>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="contact.html" class="btn-primary-custom">Contact Support Team</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Check authentication
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!auth.isLoggedIn()) {
+        window.location.href = 'index.html';
+        return;
+      }
+    });
+
+    function goToSearch() {
+      const query = document.getElementById('searchInput').value;
+      if (query) {
+        window.location.href = 'sneakers.html?search=' + encodeURIComponent(query);
+      } else {
+        window.location.href = 'sneakers.html';
+      }
+    }
+
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          auth.logout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          window.location.href = 'settings.html';
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+
+    // Search on Enter key
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') goToSearch();
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="sneakers.html">All Sneakers</a></li>
+          <li><a href="sneakers.html">New Arrivals</a></li>
+          <li><a href="sneakers.html">Best Sellers</a></li>
+          <li><a href="sneakers.html">On Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="size-guide.html">Size Guide</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="sellers page.html">Sell With Us</a></li>
+          <li><a href="press.html">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#"><i class="fab fa-instagram" style="margin-right: 10px;"></i>Instagram</a></li>
+          <li><a href="#"><i class="fab fa-twitter" style="margin-right: 10px;"></i>Twitter</a></li>
+          <li><a href="#"><i class="fab fa-facebook" style="margin-right: 10px;"></i>Facebook</a></li>
+          <li><a href="#"><i class="fab fa-tiktok" style="margin-right: 10px;"></i>TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 All Around Sneakers. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

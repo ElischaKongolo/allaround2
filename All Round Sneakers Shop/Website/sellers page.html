@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sell Sneakers | All Around Sneakers</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .seller-page {
+      min-height: 100vh;
+      background: var(--bg-dark);
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+      padding: 60px 30px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-section h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--text-light);
+      margin-bottom: 15px;
+    }
+    
+    .hero-section p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 30px;
+    }
+    
+    .sell-form-section {
+      background: var(--primary);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 40px;
+    }
+    
+    .sell-form-section h2 {
+      color: var(--text-light);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      background: var(--bg-dark);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .form-control::placeholder {
+      color: var(--gray);
+    }
+    
+    textarea.form-control {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .image-upload {
+      border: 2px dashed rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .image-upload:hover {
+      border-color: var(--accent);
+      background: rgba(255,107,0,0.05);
+    }
+    
+    .image-upload i {
+      font-size: 3rem;
+      color: var(--gray);
+      margin-bottom: 15px;
+    }
+    
+    .image-upload p {
+      color: var(--gray);
+      margin: 0;
+    }
+    
+    .btn-primary-custom {
+      background: var(--accent);
+      color: var(--text-light);
+      border: none;
+      padding: 15px 40px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary-custom:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .my-listings {
+      margin-top: 40px;
+    }
+    
+    .my-listings h3 {
+      color: var(--text-light);
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    
+    .product-card {
+      background: var(--primary);
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: var(--bg-dark);
+    }
+    
+    .product-info {
+      padding: 20px;
+    }
+    
+    .product-name {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .product-price {
+      color: var(--accent);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    
+    .product-status {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    
+    .status-pending {
+      background: rgba(255, 193, 7, 0.2);
+      color: var(--accent);
+    }
+    
+    .status-approved {
+      background: rgba(40, 167, 69, 0.2);
+      color: var(--success);
+    }
+    
+    .product-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn-edit, .btn-delete {
+      flex: 1;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-edit {
+      background: var(--accent);
+      color: var(--text-light);
+    }
+    
+    .btn-delete {
+      background: var(--danger);
+      color: var(--text-light);
+    }
+    
+    .btn-edit:hover, .btn-delete:hover {
+      opacity: 0.8;
+      transform: translateY(-1px);
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 60px 30px;
+      color: var(--gray);
+    }
+    
+    .empty-state i {
+      font-size: 4rem;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    
+    .alert {
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .alert-success {
+      background: rgba(40, 167, 69, 0.2);
+      border: 1px solid var(--success);
+      color: var(--success);
+    }
+    
+    .alert-danger {
+      background: rgba(220, 53, 69, 0.2);
+      border: 1px solid var(--danger);
+      color: var(--danger);
+    }
+  </style>
+</head>
+<body class="seller-page" style="background-image: url('AllAroundSneakerShop.gif'); background-position: center center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;">
+  <!-- Navbar -->
+  <nav class="navbar-custom">
+    <ul class="nav-links">
+      <li><a href="sneakers.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search sneakers...">
+        <button class="search-btn" onclick="goToSearch()"><i class="fas fa-search"></i></button>
+      </div>
+      <button class="icon-btn" onclick="window.location.href='Add cart page.html'" title="Cart">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="badge cart-badge" style="display: none;">0</span>
+      </button>
+      <button class="icon-btn" onclick="showUserMenu()" title="Account">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="confirmLogout()" title="Logout" style="color: var(--danger);">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1>Sell Your Sneakers</h1>
+    <p>Turn your sneakers into cash. List your authentic sneakers on South Africa's premier marketplace.</p>
+  </section>
+
+  <!-- Content Container -->
+  <div class="content-container">
+    <!-- Sell Form -->
+    <section class="sell-form-section">
+      <h2>List New Sneaker</h2>
+      <form id="sellForm" onsubmit="handleSellProduct(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Product Name *</label>
+            <input type="text" id="productName" class="form-control" placeholder="e.g., Air Jordan 1 Retro" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Brand *</label>
+            <select id="productBrand" class="form-control" required>
+              <option value="">Select Brand</option>
+              <option value="Nike">Nike</option>
+              <option value="Adidas">Adidas</option>
+              <option value="Jordan">Jordan</option>
+              <option value="New Balance">New Balance</option>
+              <option value="Puma">Puma</option>
+              <option value="Reebok">Reebok</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Price (R) *</label>
+            <input type="number" id="productPrice" class="form-control" placeholder="e.g., 2499.99" min="0" step="0.01" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Size *</label>
+            <select id="productSize" class="form-control" required>
+              <option value="">Select Size</option>
+              <option value="US 6">US 6</option>
+              <option value="US 6.5">US 6.5</option>
+              <option value="US 7">US 7</option>
+              <option value="US 7.5">US 7.5</option>
+              <option value="US 8">US 8</option>
+              <option value="US 8.5">US 8.5</option>
+              <option value="US 9">US 9</option>
+              <option value="US 9.5">US 9.5</option>
+              <option value="US 10">US 10</option>
+              <option value="US 10.5">US 10.5</option>
+              <option value="US 11">US 11</option>
+              <option value="US 11.5">US 11.5</option>
+              <option value="US 12">US 12</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="productCategory" class="form-control" required>
+              <option value="">Select Category</option>
+              <option value="Basketball">Basketball</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Skate">Skate</option>
+              <option value="Running">Running</option>
+              <option value="Casual">Casual</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Condition *</label>
+            <select id="productCondition" class="form-control" required>
+              <option value="">Select Condition</option>
+              <option value="New">New (Deadstock)</option>
+              <option value="Like New">Like New</option>
+              <option value="Good">Good</option>
+              <option value="Fair">Fair</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Description *</label>
+          <textarea id="productDescription" class="form-control" placeholder="Describe your sneakers - include details about authenticity, condition, any flaws, etc." required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Product Image</label>
+          <div class="image-upload" onclick="document.getElementById('productImage').click()">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Click to upload image</p>
+            <input type="file" id="productImage" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+          </div>
+        </div>
+        
+        <button type="submit" class="btn-primary-custom">List Sneaker</button>
+      </form>
+    </section>
+
+    <!-- My Listings -->
+    <section class="my-listings">
+      <h3>My Listings</h3>
+      <div id="myListings" class="product-grid">
+        <!-- Products will be dynamically added here -->
+      </div>
+      <div id="emptyState" class="empty-state" style="display: none;">
+        <i class="fas fa-box-open"></i>
+        <h3>No Listings Yet</h3>
+        <p>Start selling by listing your first pair of sneakers above.</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Check authentication
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!auth.isLoggedIn()) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const user = auth.getCurrentUser();
+      if (user.role !== 'seller' && user.role !== 'admin') {
+        alert('You need a seller account to access this page.');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      loadMyListings();
+    });
+
+    function handleSellProduct(event) {
+      event.preventDefault();
+      
+      const product = {
+        id: Date.now(),
+        name: document.getElementById('productName').value,
+        brand: document.getElementById('productBrand').value,
+        price: parseFloat(document.getElementById('productPrice').value),
+        size: document.getElementById('productSize').value,
+        category: document.getElementById('productCategory').value,
+        condition: document.getElementById('productCondition').value,
+        description: document.getElementById('productDescription').value,
+        image: document.getElementById('productImage').dataset.image || 'https://via.placeholder.com/300x200/1a1a1a/ffffff?text=No+Image',
+        seller: auth.getCurrentUser().fullName,
+        sellerId: auth.getCurrentUser().id,
+        status: 'pending',
+        createdAt: new Date().toISOString()
+      };
+      
+      // Save to localStorage
+      let sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+      sellerProducts.push(product);
+      localStorage.setItem('sellerProducts', JSON.stringify(sellerProducts));
+      
+      // Show success message
+      showAlert('Product listed successfully! It will be reviewed by our team.', 'success');
+      
+      // Reset form
+      document.getElementById('sellForm').reset();
+      document.getElementById('productImage').dataset.image = '';
+      
+      // Reload listings
+      loadMyListings();
+    }
+
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('productImage').dataset.image = e.target.result;
+          document.querySelector('.image-upload p').textContent = file.name;
+          document.querySelector('.image-upload').style.borderColor = 'var(--accent)';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function loadMyListings() {
+      const sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+      const currentUserId = auth.getCurrentUser().id;
+      const myProducts = sellerProducts.filter(p => p.sellerId === currentUserId);
+      
+      const listingsContainer = document.getElementById('myListings');
+      const emptyState = document.getElementById('emptyState');
+      
+      if (myProducts.length === 0) {
+        listingsContainer.style.display = 'none';
+        emptyState.style.display = 'block';
+      } else {
+        listingsContainer.style.display = 'grid';
+        emptyState.style.display = 'none';
+        
+        listingsContainer.innerHTML = myProducts.map(product => `
+          <div class="product-card">
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <div class="product-info">
+              <h4 class="product-name">${product.name}</h4>
+              <p class="product-price">R${product.price.toFixed(2)}</p>
+              <span class="product-status status-${product.status}">${product.status === 'approved' ? 'Approved' : 'Pending Review'}</span>
+              <div class="product-actions">
+                <button class="btn-edit" onclick="editProduct(${product.id})">Edit</button>
+                <button class="btn-delete" onclick="deleteProduct(${product.id})">Delete</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function editProduct(productId) {
+      const sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+      const product = sellerProducts.find(p => p.id === productId);
+      
+      if (product) {
+        // Populate form with product data
+        document.getElementById('productName').value = product.name;
+        document.getElementById('productBrand').value = product.brand;
+        document.getElementById('productPrice').value = product.price;
+        document.getElementById('productSize').value = product.size;
+        document.getElementById('productCategory').value = product.category;
+        document.getElementById('productCondition').value = product.condition;
+        document.getElementById('productDescription').value = product.description;
+        
+        // Scroll to form
+        document.querySelector('.sell-form-section').scrollIntoView({ behavior: 'smooth' });
+        
+        showAlert('Product loaded for editing. Make changes and submit to update.', 'success');
+      }
+    }
+
+    function deleteProduct(productId) {
+      if (confirm('Are you sure you want to delete this listing?')) {
+        let sellerProducts = JSON.parse(localStorage.getItem('sellerProducts') || '[]');
+        sellerProducts = sellerProducts.filter(p => p.id !== productId);
+        localStorage.setItem('sellerProducts', JSON.stringify(sellerProducts));
+        
+        showAlert('Product deleted successfully.', 'success');
+        loadMyListings();
+      }
+    }
+
+    function showAlert(message, type) {
+      const alertDiv = document.createElement('div');
+      alertDiv.className = `alert alert-${type}`;
+      alertDiv.textContent = message;
+      
+      const form = document.getElementById('sellForm');
+      form.insertBefore(alertDiv, form.firstChild);
+      
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 5000);
+    }
+
+    function goToSearch() {
+      const query = document.getElementById('searchInput').value;
+      if (query) {
+        window.location.href = 'sneakers.html?search=' + encodeURIComponent(query);
+      } else {
+        window.location.href = 'sneakers.html';
+      }
+    }
+
+    function showUserMenu() {
+      const user = auth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const options = [
+        `Logged in as: ${user.fullName}`,
+        '---',
+        'Profile',
+        'Settings',
+        'Logout'
+      ];
+      
+      const choice = prompt(`User Menu:\n\n${options.join('\n')}\n\nEnter choice number:`);
+      
+      switch(choice) {
+        case '4':
+        case 'logout':
+        case 'Logout':
+          auth.logout();
+          break;
+        case '1':
+        case 'profile':
+        case 'Profile':
+          window.location.href = 'profile.html';
+          break;
+        case '2':
+        case 'settings':
+        case 'Settings':
+          window.location.href = 'settings.html';
+          break;
+      }
+    }
+
+    function confirmLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        auth.logout();
+      }
+    }
+
+    // Search on Enter key
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') goToSearch();
+    });
+  </script>
+</body>
+</html>
